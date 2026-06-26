@@ -2,16 +2,6 @@
 
 Scripts and configuration to install EPICS areaDetector with **ADTimePix3_mpx3** and **Phoebus** on a clean **Ubuntu 24.04** server (e.g. Erik @ ASI).
 
-> **Repository name:** `deployAD` is ambiguous (deploy *what*?). Prefer renaming to one of:
->
-> | Name | When to use |
-> |------|-------------|
-> | **`ad-timepix3-deploy`** | Focused on this detector stack (recommended) |
-> | **`areaDetector-site-deploy`** | May add other detectors later |
-> | **`asi-epics-phoebus`** | ASI-specific, customer-facing |
->
-> The scripts work regardless of folder name; update `git remote` after rename.
-
 ## Layout on the target machine
 
 ```text
@@ -31,7 +21,7 @@ Detector-specific `.bob` screens ship with the driver under
 ## Quick start (Erik's server)
 
 ```bash
-git clone https://github.com/kgofron/ad-timepix3-deploy.git   # after rename
+git clone https://github.com/kgofron/ad-timepix3-deploy.git
 cd ad-timepix3-deploy
 cp config/site.env.example config/site.env
 # edit config/site.env — paths, git URLs, release tags
