@@ -1,0 +1,7 @@
+# Legacy single-file example — superseded by config/areaDetector/*.template
+# Deploy uses scripts/configure-areadetector.sh to render:
+#   ${AREA_DETECTOR}/configure/RELEASE_LIBS.local
+#   ${AREA_DETECTOR}/configure/RELEASE_PRODS.local
+#   ${AREA_DETECTOR}/configure/CONFIG_SITE.local
+#
+# See config/areaDetector/ for templates.
