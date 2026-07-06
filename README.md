@@ -38,7 +38,7 @@ After build:
 ./scripts/launch-phoebus.sh bob/main/TimePix3.bob
 ```
 
-See [docs/architecture.md](docs/architecture.md) for screen layering and a possible [ADViewers](https://github.com/areaDetector/ADViewers) contribution path.
+See [docs/architecture.md](docs/architecture.md) for screen layering and a possible [ADViewers](https://github.com/areaDetector/ADViewers) contribution path. For manual install testing on Ubuntu 24.04, see [docs/testing/ubuntu-24.04.md](docs/testing/ubuntu-24.04.md).
 
 ## Scripts
 
