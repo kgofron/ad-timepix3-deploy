@@ -114,6 +114,13 @@ install_areadetector_configure() {
   fi
 }
 
+install_synapps_release_local() {
+  local module_top="$1"
+  local template="${REPO_ROOT}/config/synApps/RELEASE.local.template"
+  local dest="${module_top}/configure/RELEASE.local"
+  render_template "${template}" "${dest}"
+}
+
 install_release_local() {
   local example="${REPO_ROOT}/config/RELEASE.local.example"
   local dest="$1"

@@ -9,24 +9,27 @@ load_config
 
 SYNAPPS_BASE="${SYNAPPS_GIT_BASE:-https://github.com/epics-modules}"
 
-declare -A MODULES=(
-  [asyn]="${ASYN_TAG}"
-  [autosave]="${AUTOSAVE_TAG}"
-  [busy]="${BUSY_TAG}"
-  [calc]="${CALC_TAG}"
-  [seq]="${SNCSEQ_TAG}"
-  [sscan]="${SSCAN_TAG}"
-  [iocStats]="${IOCSTATS_TAG}"
+# Build order: calc depends on sscan; keep leaf modules before calc.
+MODULES=(
+  asyn:"${ASYN_TAG}"
+  autosave:"${AUTOSAVE_TAG}"
+  busy:"${BUSY_TAG}"
+  seq:"${SNCSEQ_TAG}"
+  sscan:"${SSCAN_TAG}"
+  calc:"${CALC_TAG}"
+  iocStats:"${IOCSTATS_TAG}"
 )
 
 mkdir -p "${SUPPORT}"
 
-for mod in "${!MODULES[@]}"; do
-  tag="${MODULES[$mod]}"
+for entry in "${MODULES[@]}"; do
+  mod="${entry%%:*}"
+  tag="${entry#*:}"
   dest="${SUPPORT}/${mod}"
   url="${SYNAPPS_BASE}/${mod}.git"
   clone_or_update "${url}" "${dest}"
   checkout_tag "${dest}" "${tag}"
+  install_synapps_release_local "${dest}"
   build_module "${dest}"
 done
 
