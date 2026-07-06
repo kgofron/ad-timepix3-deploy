@@ -25,6 +25,8 @@ ${SUDO} apt-get install -y \
   pkg-config \
   re2c \
   libtirpc-dev \
+  libx11-dev \
+  libxext-dev \
   libreadline-dev \
   libncurses-dev \
   libtiff-dev \
