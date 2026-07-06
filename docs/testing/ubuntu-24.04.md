@@ -10,7 +10,7 @@ Optional desktop for Phoebus testing: `sudo apt install xfce4-terminal` (or any 
 
 **Host check.** Kernel says Ubuntu 24.04, but `/etc/debian_version` shows `trixie/sid` — likely upgraded packages. The scripts use `apt`; if anything odd happens in step 0, note it. Otherwise proceed.
 
-**Time.** A full run is **long** (often 1–3+ hours). ADSupport builds GraphicsMagick and other libs from source. ADCore is pinned to `master` in `config/versions.env`.
+**Time.** A full run is **long** (often 1–3+ hours). ADSupport builds GraphicsMagick and other libs from source. ADCore and ADSupport are pinned to `master` in `config/versions.env` (must stay paired).
 
 **Disk.** Allow **~10–15 GB** free under the install root.
 
@@ -174,6 +174,7 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 | `make` fails on ADSupport | Check log; ensure step 0 apt packages installed |
 | ADSupport GraphicsMagick: `X11/Xos.h: No such file` | `sudo apt install libx11-dev libxext-dev` (compile-time only on headless servers) or re-run step 00, then retry step 03 |
 | ADCore: `No rule to make target ... libpvData.a` | EPICS 7 PVA not built — `ls $EPICS_BASE/lib/linux-x86_64/libpvData.a` should exist. On detector1, PVA git submodules were often not checked out: `git -C $EPICS_BASE submodule update --init --recursive`, then re-run step 01 |
+| ADCore: `No rule to make target ... liblz4hdf5.a` | ADCore `master` + ADSupport `R1-10` mismatch — ADSupport must be `master` (builds `lz4hdf5Src`). `git -C $EPICS_BASE/../support/areaDetector/ADSupport checkout master && make -C .../ADSupport install`, then rebuild ADCore; or pull deploy repo and re-run step 03 |
 | synApps `make` fails on wrong `EPICS_BASE` | Ensure `02-install-synapps-modules.sh` writes `configure/RELEASE.local` (or create manually) |
 | Git asks for GitHub password on `seq` clone | Wrong repo URL — use `epics-modules/sequencer` (not `seq`); GitHub 404 looks like an auth prompt |
 | seq build: `re2c: No such file or directory` | `sudo apt install re2c` or re-run `./scripts/00-install-prerequisites-ubuntu24.sh` |
