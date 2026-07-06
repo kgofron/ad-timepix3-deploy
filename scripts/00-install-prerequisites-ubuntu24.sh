@@ -23,6 +23,7 @@ ${SUDO} apt-get install -y \
   ca-certificates \
   unzip \
   pkg-config \
+  re2c \
   libreadline-dev \
   libncurses-dev \
   libtiff-dev \
