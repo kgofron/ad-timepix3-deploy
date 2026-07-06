@@ -159,3 +159,29 @@ install_release_local() {
     echo "Installed ${dest} from example — review paths."
   fi
 }
+
+# ADCore ships EXAMPLE_* iocBoot files; site copies are gitignored (areaDetector install guide).
+install_adcore_ioc_boot_files() {
+  local ioc_boot="${AREA_DETECTOR}/ADCore/iocBoot"
+  local pair src_name dst_name src dst
+
+  for pair in \
+    "EXAMPLE_commonPlugins.cmd:commonPlugins.cmd" \
+    "EXAMPLE_commonPlugin_settings.req:commonPlugin_settings.req"
+  do
+    src_name="${pair%%:*}"
+    dst_name="${pair##*:}"
+    src="${ioc_boot}/${src_name}"
+    dst="${ioc_boot}/${dst_name}"
+    if [[ ! -f "${src}" ]]; then
+      echo "Missing ${src} — ADCore iocBoot not installed?" >&2
+      exit 1
+    fi
+    if [[ -f "${dst}" ]]; then
+      echo "Keeping existing ${dst}"
+    else
+      cp "${src}" "${dst}"
+      echo "Copied ${src_name} -> ${dst_name} under ${ioc_boot}"
+    fi
+  done
+}

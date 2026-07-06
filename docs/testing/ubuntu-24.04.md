@@ -184,6 +184,9 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 | Re-run after partial synApps build | Re-run `./scripts/02-install-synapps-modules.sh` — skips modules with `.deploy-installed`; set `FORCE_SYNAPPS_REBUILD=1` to rebuild all |
 | Phoebus won’t open | Java/display; run `java -version`, check `$DISPLAY` |
 | IOC can’t connect | Start Serval; fix `SERVER_URL` in IOC startup files |
+| `Can't open .../ADCore/iocBoot/commonPlugins.cmd` | ADCore only ships `EXAMPLE_*` files — copy once: `cp -n EXAMPLE_commonPlugins.cmd commonPlugins.cmd` and `cp -n EXAMPLE_commonPlugin_settings.req commonPlugin_settings.req` in `$ADCORE/iocBoot`, or re-run step 03 (deploy script does this automatically) |
+| `Pva1` / `Stats5` PV not found after IOC start | `commonPlugins.cmd` did not load — fix row above; `Stats5` comes from common plugins. `Pva1` is optional (commented in EXAMPLE); MPX3 uses driver-wired `Pva2`–`Pva6` in `st_mpx3.cmd` |
+| `unable to open file auto_settings.req` | File lives in driver `iocs/tpx3IOC/iocBoot/iocTimePix/` — `git pull` in `ADTimePix3_mpx3` or re-run step 04; needs `commonPlugin_settings.req` in ADCore `iocBoot` |
 
 ---
 

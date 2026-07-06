@@ -32,4 +32,6 @@ clone_or_update "${ADCORE_REPO}" "${AREA_DETECTOR}/ADCore"
 checkout_tag "${AREA_DETECTOR}/ADCore" "${ADCORE_TAG}"
 build_module "${AREA_DETECTOR}/ADCore"
 
+install_adcore_ioc_boot_files
+
 echo "ADSupport and ADCore built under ${AREA_DETECTOR}"
