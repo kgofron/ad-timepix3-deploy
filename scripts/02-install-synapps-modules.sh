@@ -38,6 +38,9 @@ for entry in "${MODULES[@]}"; do
   clone_or_update "${url}" "${dest}"
   checkout_tag "${dest}" "${tag}"
   install_synapps_release_local "${dest}"
+  if [[ "${mod}" == "asyn" ]]; then
+    install_asyn_config_site_local "${dest}"
+  fi
   if synapps_module_installed "${tag}" "${dest}"; then
     echo "==> Skipping ${mod} (${tag} already installed)"
     continue

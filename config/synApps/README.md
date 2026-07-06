@@ -12,7 +12,7 @@ alphabetical order. Reference layout: `/epics/support2` on ORNL laptops.
 | `seq`    | `SNCSEQ_TAG`      | `EPICS_BASE`, **re2c** (snc lexer) — clone [epics-modules/sequencer](https://github.com/epics-modules/sequencer), install as `${SUPPORT}/seq` |
 | `sscan`  | `SSCAN_TAG`       | `EPICS_BASE`, `SNCSEQ` — use **R2-11-5+** with EPICS 7 |
 | `calc`   | `CALC_TAG`        | `EPICS_BASE`, `SSCAN` (swait record)     |
-| `asyn`   | `ASYN_TAG`        | `EPICS_BASE`, `CALC` (sCalcout in devEpics) |
+| `asyn`   | `ASYN_TAG`        | `EPICS_BASE`, `CALC` (sCalcout in devEpics); **libtirpc-dev** + `TIRPC=YES` on Ubuntu 22.04+ |
 | `autosave` | `AUTOSAVE_TAG`  | `EPICS_BASE`                             |
 | `busy`   | `BUSY_TAG`        | `EPICS_BASE` (test app: `ASYN`, `AUTOSAVE`) |
 | `iocStats` | `IOCSTATS_TAG`  | `EPICS_BASE` (test app: `SNCSEQ`)        |

@@ -121,6 +121,14 @@ install_synapps_release_local() {
   render_template "${template}" "${dest}"
 }
 
+install_asyn_config_site_local() {
+  local module_top="$1"
+  local template="${REPO_ROOT}/config/synApps/CONFIG_SITE.local.asyn.template"
+  local dest="${module_top}/configure/CONFIG_SITE.local"
+  cp "${template}" "${dest}"
+  echo "Wrote ${dest}"
+}
+
 # True when module at tag is already installed (skip rebuild on re-run).
 synapps_module_installed() {
   local tag="$1"
