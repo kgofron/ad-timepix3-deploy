@@ -173,6 +173,8 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 | `git checkout` / tag not found | Set `GIT_DEPTH=0` in `site.env`, delete the failed clone dir, re-run |
 | `make` fails on ADSupport | Check log; ensure step 0 apt packages installed |
 | synApps `make` fails on wrong `EPICS_BASE` | Ensure `02-install-synapps-modules.sh` writes `configure/RELEASE.local` (or create manually) |
+| asyn: `sCalcoutRecord.h: No such file` | Build **calc before asyn**; pull latest script order (`seq` → `sscan` → `calc` → `asyn` → …) |
+| Re-run after partial synApps build | Re-run `./scripts/02-install-synapps-modules.sh` — skips modules with `.deploy-installed`; set `FORCE_SYNAPPS_REBUILD=1` to rebuild all |
 | Phoebus won’t open | Java/display; run `java -version`, check `$DISPLAY` |
 | IOC can’t connect | Start Serval; fix `SERVER_URL` in IOC startup files |
 

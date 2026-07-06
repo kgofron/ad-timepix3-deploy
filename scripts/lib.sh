@@ -121,6 +121,27 @@ install_synapps_release_local() {
   render_template "${template}" "${dest}"
 }
 
+# True when module at tag is already installed (skip rebuild on re-run).
+synapps_module_installed() {
+  local tag="$1"
+  local dest="$2"
+  local stamp="${dest}/.deploy-installed"
+  local lib="${dest}/lib/${EPICS_HOST_ARCH}"
+  if [[ "${FORCE_SYNAPPS_REBUILD:-}" == "1" ]]; then
+    return 1
+  fi
+  [[ -f "${stamp}" ]] || return 1
+  grep -qxF "${tag}" "${stamp}" || return 1
+  [[ -d "${lib}" ]] || return 1
+  [[ -n "$(ls -A "${lib}" 2>/dev/null)" ]]
+}
+
+mark_synapps_installed() {
+  local tag="$1"
+  local dest="$2"
+  echo "${tag}" > "${dest}/.deploy-installed"
+}
+
 install_release_local() {
   local example="${REPO_ROOT}/config/RELEASE.local.example"
   local dest="$1"

@@ -9,14 +9,14 @@ load_config
 
 SYNAPPS_BASE="${SYNAPPS_GIT_BASE:-https://github.com/epics-modules}"
 
-# Build order: calc depends on sscan; keep leaf modules before calc.
+# Build order from configure/RELEASE dependencies — see config/synApps/README.md
 MODULES=(
-  asyn:"${ASYN_TAG}"
-  autosave:"${AUTOSAVE_TAG}"
-  busy:"${BUSY_TAG}"
   seq:"${SNCSEQ_TAG}"
   sscan:"${SSCAN_TAG}"
   calc:"${CALC_TAG}"
+  asyn:"${ASYN_TAG}"
+  autosave:"${AUTOSAVE_TAG}"
+  busy:"${BUSY_TAG}"
   iocStats:"${IOCSTATS_TAG}"
 )
 
@@ -30,7 +30,12 @@ for entry in "${MODULES[@]}"; do
   clone_or_update "${url}" "${dest}"
   checkout_tag "${dest}" "${tag}"
   install_synapps_release_local "${dest}"
+  if synapps_module_installed "${tag}" "${dest}"; then
+    echo "==> Skipping ${mod} (${tag} already installed)"
+    continue
+  fi
   build_module "${dest}"
+  mark_synapps_installed "${tag}" "${dest}"
 done
 
 echo "synApps support modules installed under ${SUPPORT}"
