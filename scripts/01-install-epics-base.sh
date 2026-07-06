@@ -16,4 +16,11 @@ epics_env
 echo "==> Building EPICS Base at ${DEST}"
 make -C "${DEST}" -j"${MAKE_JOBS}"
 
+pva_lib="${DEST}/lib/${EPICS_HOST_ARCH}/libpvData.a"
+if [[ ! -f "${pva_lib}" ]]; then
+  echo "ERROR: ${pva_lib} not found after EPICS Base build." >&2
+  echo "ADCore (WITH_PVA=YES) needs EPICS 7 PVA — rebuild base or check EPICS_HOST_ARCH." >&2
+  exit 1
+fi
+
 echo "EPICS Base ready. Source: source ${DEST}/setEpicsEnv.sh"

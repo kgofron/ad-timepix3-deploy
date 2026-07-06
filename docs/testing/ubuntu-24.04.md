@@ -173,6 +173,7 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 | `git checkout` / tag not found | Set `GIT_DEPTH=0` in `site.env`, delete the failed clone dir, re-run |
 | `make` fails on ADSupport | Check log; ensure step 0 apt packages installed |
 | ADSupport GraphicsMagick: `X11/Xos.h: No such file` | `sudo apt install libx11-dev libxext-dev` (compile-time only on headless servers) or re-run step 00, then retry step 03 |
+| ADCore: `No rule to make target ... libpvData.a` | EPICS 7 PVA missing or not found — verify `ls $EPICS_BASE/lib/linux-x86_64/libpvData.a`; rebuild step 01 if absent; re-run `configure-areadetector.sh` and step 03 |
 | synApps `make` fails on wrong `EPICS_BASE` | Ensure `02-install-synapps-modules.sh` writes `configure/RELEASE.local` (or create manually) |
 | Git asks for GitHub password on `seq` clone | Wrong repo URL — use `epics-modules/sequencer` (not `seq`); GitHub 404 looks like an auth prompt |
 | seq build: `re2c: No such file or directory` | `sudo apt install re2c` or re-run `./scripts/00-install-prerequisites-ubuntu24.sh` |

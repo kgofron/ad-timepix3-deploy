@@ -6,6 +6,15 @@ BUILD_IOCS=YES
 WITH_PVA=YES
 WITH_QSRV=YES
 
+# EPICS 7 PVA libs live under $(EPICS_BASE)/lib — explicit dirs for ADCore library builds
+ifeq ($(WITH_PVA),YES)
+pvData_DIR = $(EPICS_BASE)/lib/$(EPICS_HOST_ARCH)
+pvAccess_DIR = $(EPICS_BASE)/lib/$(EPICS_HOST_ARCH)
+pvDatabase_DIR = $(EPICS_BASE)/lib/$(EPICS_HOST_ARCH)
+nt_DIR = $(EPICS_BASE)/lib/$(EPICS_HOST_ARCH)
+qsrv_DIR = $(EPICS_BASE)/lib/$(EPICS_HOST_ARCH)
+endif
+
 # Build third-party libs inside ADSupport (no system GraphicsMagick dev package)
 WITH_GRAPHICSMAGICK=YES
 GRAPHICSMAGICK_EXTERNAL=NO
