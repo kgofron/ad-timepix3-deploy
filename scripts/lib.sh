@@ -163,7 +163,7 @@ install_release_local() {
 # Download and unpack Phoebus product (GitHub tar.gz or SNS product-sns zip).
 install_phoebus_product() {
   local dest="${PHOEBUS_HOME}"
-  local source="${PHOEBUS_SOURCE:-github}"
+  local source="${PHOEBUS_SOURCE:-sns}"
   local tmp extract product_dir jdk_dir url archive
 
   if [[ -x "${dest}/phoebus.sh" ]]; then

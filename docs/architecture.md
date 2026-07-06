@@ -33,8 +33,8 @@ Product install via `05-install-phoebus.sh` — source set in `config/site.env`:
 
 | `PHOEBUS_SOURCE` | Download | Notes |
 |------------------|----------|-------|
-| `github` (default) | [ControlSystemStudio/phoebus releases](https://github.com/ControlSystemStudio/phoebus/releases) `phoebus-*-linux.tar.gz` | Needs Java 11+ (`openjdk-17-jre` from step 00) |
-| `sns` | [ORNL/SNS CS-Studio](https://controlssoftware.sns.ornl.gov/css_phoebus/) `product-sns-linux.zip` | Bundled `jdk` at `/epics/GUI/jdk`; SNS network/VPN only |
+| `sns` (default) | [ORNL/SNS CS-Studio](https://controlssoftware.sns.ornl.gov/css_phoebus/) `product-sns-linux.zip` | Bundled `jdk` at `/epics/GUI/jdk`; SNS network/VPN only |
+| `github` | [ControlSystemStudio/phoebus releases](https://github.com/ControlSystemStudio/phoebus/releases) `phoebus-*-linux.tar.gz` | Off-site; needs Java 11+ (`openjdk-17-jre` from step 00) |
 
 Requires **Java 11+** for `github` source (OpenJDK 17 on Ubuntu 24.04).
 

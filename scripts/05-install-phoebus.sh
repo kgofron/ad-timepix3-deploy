@@ -26,5 +26,5 @@ if [[ -d "${REPO_ROOT}/bob" ]]; then
   rsync -a "${REPO_ROOT}/bob/" "${BOB_ROOT}/"
 fi
 
-echo "Phoebus ready: ${DEST} (source: ${PHOEBUS_SOURCE:-github})"
+echo "Phoebus ready: ${DEST} (source: ${PHOEBUS_SOURCE:-sns})"
 echo "Launch: ${SCRIPT_DIR}/launch-phoebus.sh"
