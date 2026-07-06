@@ -176,6 +176,7 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 | Git asks for GitHub password on `seq` clone | Wrong repo URL — use `epics-modules/sequencer` (not `seq`); GitHub 404 looks like an auth prompt |
 | seq build: `re2c: No such file or directory` | `sudo apt install re2c` or re-run `./scripts/00-install-prerequisites-ubuntu24.sh` |
 | sscan build: `unknown type name 'READONLY'` | EPICS 7 needs sscan **R2-11-5+** (`shareLib.h`); set `SSCAN_TAG=R2-11-5` in `versions.env`, `rm -rf /epics/support/sscan`, re-run step 02 |
+| asyn build: `rpc/rpc.h: No such file` | `sudo apt install libtirpc-dev` (VXI11 in asyn R4-45) or re-run step 00 |
 | asyn: `sCalcoutRecord.h: No such file` | Build **calc before asyn**; pull latest script order (`seq` → `sscan` → `calc` → `asyn` → …) |
 | Re-run after partial synApps build | Re-run `./scripts/02-install-synapps-modules.sh` — skips modules with `.deploy-installed`; set `FORCE_SYNAPPS_REBUILD=1` to rebuild all |
 | Phoebus won’t open | Java/display; run `java -version`, check `$DISPLAY` |

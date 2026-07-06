@@ -24,6 +24,7 @@ ${SUDO} apt-get install -y \
   unzip \
   pkg-config \
   re2c \
+  libtirpc-dev \
   libreadline-dev \
   libncurses-dev \
   libtiff-dev \
