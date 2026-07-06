@@ -22,11 +22,19 @@ MODULES=(
 
 mkdir -p "${SUPPORT}"
 
+synapps_git_repo() {
+  case "$1" in
+    seq) echo "${SNCSEQ_GIT_REPO:-sequencer}" ;;
+    *) echo "$1" ;;
+  esac
+}
+
 for entry in "${MODULES[@]}"; do
   mod="${entry%%:*}"
   tag="${entry#*:}"
   dest="${SUPPORT}/${mod}"
-  url="${SYNAPPS_BASE}/${mod}.git"
+  git_repo="$(synapps_git_repo "${mod}")"
+  url="${SYNAPPS_BASE}/${git_repo}.git"
   clone_or_update "${url}" "${dest}"
   checkout_tag "${dest}" "${tag}"
   install_synapps_release_local "${dest}"

@@ -9,7 +9,7 @@ alphabetical order. Reference layout: `/epics/support2` on ORNL laptops.
 
 | Module   | Tag source        | Needs (library build)                    |
 |----------|-------------------|------------------------------------------|
-| `seq`    | `SNCSEQ_TAG`      | `EPICS_BASE`                             |
+| `seq`    | `SNCSEQ_TAG`      | `EPICS_BASE` — clone [epics-modules/sequencer](https://github.com/epics-modules/sequencer), install as `${SUPPORT}/seq` |
 | `sscan`  | `SSCAN_TAG`       | `EPICS_BASE`, `SNCSEQ`                   |
 | `calc`   | `CALC_TAG`        | `EPICS_BASE`, `SSCAN` (swait record)     |
 | `asyn`   | `ASYN_TAG`        | `EPICS_BASE`, `CALC` (sCalcout in devEpics) |
