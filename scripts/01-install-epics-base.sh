@@ -12,6 +12,13 @@ DEST="${EPICS_BASE}"
 clone_or_update "${REPO_URL}" "${DEST}"
 checkout_tag "${DEST}" "${EPICS_BASE_TAG}"
 
+echo "==> Initializing EPICS Base submodules (PVA: pvData, pvAccess, qsrv, …)"
+submodule_args=(--init --recursive)
+if [[ "${GIT_DEPTH:-1}" != "0" ]]; then
+  submodule_args+=(--depth "${GIT_DEPTH:-1}")
+fi
+git -C "${DEST}" submodule update "${submodule_args[@]}"
+
 epics_env
 echo "==> Building EPICS Base at ${DEST}"
 make -C "${DEST}" -j"${MAKE_JOBS}"
@@ -19,7 +26,8 @@ make -C "${DEST}" -j"${MAKE_JOBS}"
 pva_lib="${DEST}/lib/${EPICS_HOST_ARCH}/libpvData.a"
 if [[ ! -f "${pva_lib}" ]]; then
   echo "ERROR: ${pva_lib} not found after EPICS Base build." >&2
-  echo "ADCore (WITH_PVA=YES) needs EPICS 7 PVA — rebuild base or check EPICS_HOST_ARCH." >&2
+  echo "PVA submodules may be empty — run: git -C ${DEST} submodule update --init --recursive" >&2
+  echo "Then rebuild: make -C ${DEST} -j\$(nproc)" >&2
   exit 1
 fi
 
