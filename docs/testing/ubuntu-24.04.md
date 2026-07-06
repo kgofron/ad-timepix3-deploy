@@ -182,7 +182,9 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 | asyn build: `rpc/rpc.h: No such file` | Install `libtirpc-dev` (step 00); deploy writes `asyn/configure/CONFIG_SITE.local` with `TIRPC=YES`. `libntirpc-dev` is not required. Re-run step 02 after both |
 | asyn: `sCalcoutRecord.h: No such file` | Build **calc before asyn**; pull latest script order (`seq` → `sscan` → `calc` → `asyn` → …) |
 | Re-run after partial synApps build | Re-run `./scripts/02-install-synapps-modules.sh` — skips modules with `.deploy-installed`; set `FORCE_SYNAPPS_REBUILD=1` to rebuild all |
-| Phoebus won’t open | Java/display; run `java -version`, check `$DISPLAY` |
+| Phoebus won’t open | Java/display; run `java -version`, check `$DISPLAY`. SNS source bundles JDK at `/epics/GUI/jdk` |
+| `05-install-phoebus.sh` leaves empty `/epics/GUI` | Set `PHOEBUS_SOURCE` in `site.env`: `sns` on SNS machines, `github` elsewhere. Re-run step 05 |
+| GitHub Phoebus download 404 | Old script used `phoebus-product-*.zip` (does not exist); current deploy uses `phoebus-*-linux.tar.gz` |
 | IOC can’t connect | Start Serval; fix `SERVER_URL` in IOC startup files |
 | `Can't open .../ADCore/iocBoot/commonPlugins.cmd` | ADCore only ships `EXAMPLE_*` files — copy once: `cp -n EXAMPLE_commonPlugins.cmd commonPlugins.cmd` and `cp -n EXAMPLE_commonPlugin_settings.req commonPlugin_settings.req` in `$ADCORE/iocBoot`, or re-run step 03 (deploy script does this automatically) |
 | `Pva1` / `Stats5` PV not found after IOC start | `commonPlugins.cmd` did not load — fix row above; `Stats5` comes from common plugins. `Pva1` is optional (commented in EXAMPLE); MPX3 uses driver-wired `Pva2`–`Pva6` in `st_mpx3.cmd` |
@@ -205,6 +207,7 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 ```bash
 cd /home/kg1/src/github/ad-timepix3-deploy
 cp config/site.env.example config/site.env
+# SNS site product (bundled Java): edit site.env and set PHOEBUS_SOURCE=sns
 sudo mkdir -p /epics && sudo chown "$USER":"$(id -gn)" /epics
 ./scripts/00-install-prerequisites-ubuntu24.sh
 ./scripts/deploy-all.sh 2>&1 | tee ~/deploy-detector1.log

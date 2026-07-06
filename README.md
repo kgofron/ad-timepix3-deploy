@@ -24,7 +24,7 @@ Detector-specific `.bob` screens ship with the driver under
 git clone https://github.com/kgofron/ad-timepix3-deploy.git
 cd ad-timepix3-deploy
 cp config/site.env.example config/site.env
-# edit config/site.env — paths, git URLs, release tags
+# edit config/site.env — paths, PHOEBUS_SOURCE (sns on ORNL/SNS machines), git URLs
 ./scripts/deploy-all.sh
 ```
 

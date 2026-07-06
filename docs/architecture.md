@@ -29,8 +29,14 @@ System packages on Ubuntu 24.04: see `scripts/00-install-prerequisites-ubuntu24.
 
 ## Phoebus
 
-Product install from [ControlSystemStudio/phoebus releases](https://github.com/ControlSystemStudio/phoebus/releases).  
-Requires **Java 11+** (OpenJDK 17 on Ubuntu 24.04).
+Product install via `05-install-phoebus.sh` — source set in `config/site.env`:
+
+| `PHOEBUS_SOURCE` | Download | Notes |
+|------------------|----------|-------|
+| `github` (default) | [ControlSystemStudio/phoebus releases](https://github.com/ControlSystemStudio/phoebus/releases) `phoebus-*-linux.tar.gz` | Needs Java 11+ (`openjdk-17-jre` from step 00) |
+| `sns` | [ORNL/SNS CS-Studio](https://controlssoftware.sns.ornl.gov/css_phoebus/) `product-sns-linux.zip` | Bundled `jdk` at `/epics/GUI/jdk`; SNS network/VPN only |
+
+Requires **Java 11+** for `github` source (OpenJDK 17 on Ubuntu 24.04).
 
 Display path order:
 

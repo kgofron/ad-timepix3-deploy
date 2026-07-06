@@ -160,6 +160,75 @@ install_release_local() {
   fi
 }
 
+# Download and unpack Phoebus product (GitHub tar.gz or SNS product-sns zip).
+install_phoebus_product() {
+  local dest="${PHOEBUS_HOME}"
+  local source="${PHOEBUS_SOURCE:-github}"
+  local tmp extract product_dir jdk_dir url archive
+
+  if [[ -x "${dest}/phoebus.sh" ]]; then
+    echo "Phoebus already present at ${dest}"
+    return 0
+  fi
+
+  tmp="$(mktemp -d)"
+  extract="${tmp}/extract"
+  mkdir -p "${extract}"
+
+  case "${source}" in
+    sns)
+      url="${PHOEBUS_SNS_URL}"
+      archive="${tmp}/phoebus.zip"
+      echo "==> Downloading SNS Phoebus from ${url}"
+      wget -O "${archive}" "${url}"
+      if [[ ! -s "${archive}" ]] || [[ "$(stat -c%s "${archive}")" -lt 1000000 ]]; then
+        echo "SNS Phoebus download failed or archive too small — check VPN/network" >&2
+        rm -rf "${tmp}"
+        exit 1
+      fi
+      unzip -q "${archive}" -d "${extract}"
+      ;;
+    github)
+      url="https://github.com/ControlSystemStudio/phoebus/releases/download/v${PHOEBUS_VERSION}/${PHOEBUS_GITHUB_PRODUCT}"
+      archive="${tmp}/phoebus.tar.gz"
+      echo "==> Downloading Phoebus ${PHOEBUS_VERSION} from GitHub"
+      wget -O "${archive}" "${url}"
+      if [[ ! -s "${archive}" ]]; then
+        echo "GitHub Phoebus download failed: ${url}" >&2
+        rm -rf "${tmp}"
+        exit 1
+      fi
+      tar xzf "${archive}" -C "${extract}"
+      ;;
+    *)
+      echo "Unknown PHOEBUS_SOURCE=${source} (use github or sns)" >&2
+      rm -rf "${tmp}"
+      exit 1
+      ;;
+  esac
+
+  product_dir="$(find "${extract}" -maxdepth 1 -type d \( -name 'product-sns-*' -o -name 'product-*' \) | head -1)"
+  if [[ -z "${product_dir}" ]] || [[ ! -f "${product_dir}/phoebus.sh" ]]; then
+    echo "Unexpected Phoebus archive layout under ${extract}" >&2
+    rm -rf "${tmp}"
+    exit 1
+  fi
+
+  jdk_dir="${extract}/jdk"
+  rm -rf "${dest}"
+  mv "${product_dir}" "${dest}"
+
+  if [[ -d "${jdk_dir}" ]]; then
+    rm -rf "${GUI_ROOT}/jdk"
+    mv "${jdk_dir}" "${GUI_ROOT}/jdk"
+    echo "Installed bundled JDK at ${GUI_ROOT}/jdk"
+  fi
+
+  chmod +x "${dest}/phoebus.sh"
+  rm -rf "${tmp}"
+  echo "Phoebus product installed at ${dest}"
+}
+
 # ADCore ships EXAMPLE_* iocBoot files; site copies are gitignored (areaDetector install guide).
 install_adcore_ioc_boot_files() {
   local ioc_boot="${AREA_DETECTOR}/ADCore/iocBoot"

@@ -8,24 +8,8 @@ load_config
 
 mkdir -p "${GUI_ROOT}"
 DEST="${PHOEBUS_HOME}"
-ZIP_URL="https://github.com/ControlSystemStudio/phoebus/releases/download/v${PHOEBUS_VERSION}/${PHOEBUS_PRODUCT}"
-TMP="$(mktemp -d)"
 
-if [[ -x "${DEST}/phoebus.sh" ]]; then
-  echo "Phoebus already present at ${DEST}"
-else
-  echo "==> Downloading Phoebus ${PHOEBUS_VERSION}"
-  wget -q -O "${TMP}/phoebus.zip" "${ZIP_URL}"
-  unzip -q "${TMP}/phoebus.zip" -d "${TMP}"
-  # Archive usually contains a single product-* directory
-  PRODUCT_DIR="$(find "${TMP}" -maxdepth 1 -type d -name 'product-*' | head -1)"
-  if [[ -z "${PRODUCT_DIR}" ]]; then
-    echo "Unexpected Phoebus archive layout" >&2
-    exit 1
-  fi
-  rm -rf "${DEST}"
-  mv "${PRODUCT_DIR}" "${DEST}"
-fi
+install_phoebus_product
 
 SETTINGS="${DEST}/settings.ini"
 EXAMPLE="${REPO_ROOT}/config/phoebus-settings.ini.example"
@@ -42,6 +26,5 @@ if [[ -d "${REPO_ROOT}/bob" ]]; then
   rsync -a "${REPO_ROOT}/bob/" "${BOB_ROOT}/"
 fi
 
-chmod +x "${DEST}/phoebus.sh"
-echo "Phoebus installed: ${DEST}"
+echo "Phoebus ready: ${DEST} (source: ${PHOEBUS_SOURCE:-github})"
 echo "Launch: ${SCRIPT_DIR}/launch-phoebus.sh"
