@@ -123,11 +123,13 @@ cd /home/kg1/src/github/ad-timepix3-deploy
 ./scripts/launch-ioc.sh
 ```
 
+Uses `IOC_STARTUP` from `config/site.env` (default `st_mpx3.cmd` for MediPix3). Override: `IOC_STARTUP=st.cmd ./scripts/launch-ioc.sh`.
+
 In another terminal:
 
 ```bash
 source /epics/epics-base/setEpicsEnv.sh
-caget TPX3-TEST:cam1:StatusMessage   # adjust prefix if you changed IOC_PREFIX
+caget MPX3-TEST:cam1:StatusMessage   # prefix from st_mpx3.cmd / unique_mpx3.cmd
 ```
 
 Stop the IOC with Ctrl+C in the IOC terminal.
@@ -144,16 +146,18 @@ If `SERVER_URL` is not in `st_base.cmd` yet, edit it under:
 
 ## Step 6 — Test Phoebus
 
-The README mentions `bob/main/TimePix3.bob`, but that screen is still a **placeholder** in the repo. Use a **driver** screen that actually exists:
+Driver screens live under `ADTimePix3_mpx3/tpx3App/op/bob/`. Site `bob/main/` is still a placeholder.
 
 ```bash
 # List available screens
 ls /epics/support/areaDetector/ADTimePix3_mpx3/tpx3App/op/bob/
 
-# Launch Phoebus (needs DISPLAY / X11 or VNC)
+# Launch Phoebus (needs DISPLAY / X11 or VNC) — default from site.env: MediPix3.bob
 cd /home/kg1/src/github/ad-timepix3-deploy
-./scripts/launch-phoebus.sh ADTimePix3_mpx3/tpx3App/op/bob/MediPix3.bob
-# or TimePix3.bob — whichever exists in that directory
+./scripts/launch-phoebus.sh
+# or explicitly:
+./scripts/launch-phoebus.sh MediPix3.bob
+./scripts/launch-phoebus.sh TimePix3.bob
 ```
 
 On a headless server:

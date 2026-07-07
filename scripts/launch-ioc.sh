@@ -17,11 +17,26 @@ if [[ ! -d "${IOC_DIR}" ]]; then
   exit 1
 fi
 
+STARTUP="${IOC_STARTUP:-}"
+if [[ -z "${STARTUP}" ]]; then
+  if [[ -f "${IOC_DIR}/st_mpx3.cmd" ]]; then
+    STARTUP=st_mpx3.cmd
+  else
+    STARTUP=st.cmd
+  fi
+fi
+
+STARTUP_PATH="${IOC_DIR}/${STARTUP}"
+if [[ ! -f "${STARTUP_PATH}" ]]; then
+  echo "IOC startup script not found: ${STARTUP_PATH}" >&2
+  echo "Set IOC_STARTUP in config/site.env (e.g. st_mpx3.cmd or st.cmd)" >&2
+  exit 1
+fi
+
 cd "${IOC_DIR}"
 echo "Starting IOC in ${IOC_DIR}"
-echo "  PREFIX=${IOC_PREFIX}  SERVER_URL=${SERVER_URL}"
+echo "  startup=${STARTUP}  PREFIX=${IOC_PREFIX}  SERVER_URL=${SERVER_URL}"
 echo "Ensure Serval is running before acquire."
 
-# Optional: patch st_base.cmd SERVER_URL via env (site-specific st.cmd may override)
 export SERVER_URL
-./st.cmd
+exec "./${STARTUP}"

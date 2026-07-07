@@ -37,11 +37,13 @@ caget --version
 # Optional — add to every login shell:
 ./scripts/setup-epics-shell.sh
 
-# Terminal 1 — start Serval (ASI), then IOC
+# Terminal 1 — start Serval (ASI), then IOC (default: st_mpx3.cmd)
 ./scripts/launch-ioc.sh
 
-# Terminal 2 — Phoebus
-./scripts/launch-phoebus.sh bob/main/TimePix3.bob
+# Terminal 2 — Phoebus (default: driver MediPix3.bob)
+./scripts/launch-phoebus.sh
+# or: ./scripts/launch-phoebus.sh MediPix3.bob
+# or: ./scripts/launch-phoebus.sh TimePix3.bob
 ```
 
 See [docs/architecture.md](docs/architecture.md) for screen layering and a possible [ADViewers](https://github.com/areaDetector/ADViewers) contribution path. For manual install testing on Ubuntu 24.04, see [docs/testing/ubuntu-24.04.md](docs/testing/ubuntu-24.04.md).
@@ -60,8 +62,8 @@ See [docs/architecture.md](docs/architecture.md) for screen layering and a possi
 | `scripts/04-install-adtimepix3-mpx3.sh` | Driver fork + IOC build |
 | `scripts/05-install-phoebus.sh` | Phoebus product + settings |
 | `scripts/deploy-all.sh` | Run all of the above in order |
-| `scripts/launch-ioc.sh` | Boot `iocTimePix` (edit `SERVER_URL` first) |
-| `scripts/launch-phoebus.sh` | Start Phoebus with site `settings.ini` |
+| `scripts/launch-ioc.sh` | Boot `iocTimePix` (`IOC_STARTUP`, default `st_mpx3.cmd`) |
+| `scripts/launch-phoebus.sh` | Start Phoebus (`PHOEBUS_DEFAULT_SCREEN` or path argument) |
 
 Pinned versions live in `config/versions.env`. Site paths in `config/site.env`.
 
