@@ -27,10 +27,15 @@ load_config() {
 }
 
 epics_env() {
-  export EPICS_BASE
+  export EPICS_BASE EPICS_HOST_ARCH
   if [[ -f "${EPICS_BASE}/setEpicsEnv.sh" ]]; then
     # shellcheck disable=SC1091
     source "${EPICS_BASE}/setEpicsEnv.sh"
+  else
+    local bin="${EPICS_BASE}/bin/${EPICS_HOST_ARCH}"
+    local lib="${EPICS_BASE}/lib/${EPICS_HOST_ARCH}"
+    export PATH="${bin}:${PATH}"
+    export LD_LIBRARY_PATH="${lib}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
   fi
 }
 
@@ -81,6 +86,7 @@ render_template() {
   sed \
     -e "s|@SUPPORT@|${SUPPORT}|g" \
     -e "s|@EPICS_BASE@|${EPICS_BASE}|g" \
+    -e "s|@EPICS_HOST_ARCH@|${EPICS_HOST_ARCH}|g" \
     -e "s|@AREA_DETECTOR@|${AREA_DETECTOR}|g" \
     -e "s|@ADTIMEPix3_DIRNAME@|${ADTIMEPix3_DIRNAME}|g" \
     -e "s|@ADTIMEPix3_HOME@|${ADTIMEPix3_HOME}|g" \
@@ -158,6 +164,18 @@ install_release_local() {
     cp "${example}" "${dest}"
     echo "Installed ${dest} from example — review paths."
   fi
+}
+
+# EPICS Base does not ship setEpicsEnv.sh — site script adds bin/ to PATH (caget, caput, …).
+install_epics_env_script() {
+  local template="${REPO_ROOT}/config/setEpicsEnv.sh.template"
+  local dest="${EPICS_BASE}/setEpicsEnv.sh"
+  if [[ ! -d "${EPICS_BASE}" ]]; then
+    echo "Missing ${EPICS_BASE} — run 01-install-epics-base.sh first" >&2
+    exit 1
+  fi
+  render_template "${template}" "${dest}"
+  chmod +x "${dest}"
 }
 
 # Download and unpack Phoebus product (GitHub tar.gz or SNS product-sns zip).

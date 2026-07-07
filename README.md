@@ -31,6 +31,12 @@ cp config/site.env.example config/site.env
 After build:
 
 ```bash
+source /epics/epics-base/setEpicsEnv.sh   # or Erik: /data/epics/epics-base/setEpicsEnv.sh
+caget --version
+
+# Optional — add to every login shell:
+./scripts/setup-epics-shell.sh
+
 # Terminal 1 — start Serval (ASI), then IOC
 ./scripts/launch-ioc.sh
 
@@ -45,7 +51,9 @@ See [docs/architecture.md](docs/architecture.md) for screen layering and a possi
 | Script | Purpose |
 |--------|---------|
 | `scripts/00-install-prerequisites-ubuntu24.sh` | `apt` build deps (compiler, readline, libtiff, Java, …) |
-| `scripts/01-install-epics-base.sh` | Clone & build EPICS Base |
+| `scripts/01-install-epics-base.sh` | Clone & build EPICS Base; write `setEpicsEnv.sh` |
+| `scripts/configure-epics-env.sh` | Regenerate `${EPICS_BASE}/setEpicsEnv.sh` only |
+| `scripts/setup-epics-shell.sh` | Add `source setEpicsEnv.sh` to `~/.bashrc` |
 | `scripts/02-install-synapps-modules.sh` | asyn, autosave, busy, calc, seq, sscan, iocStats |
 | `scripts/configure-areadetector.sh` | Write `RELEASE_LIBS.local`, `RELEASE_PRODS.local`, `CONFIG_SITE.local` |
 | `scripts/03-install-areadetector-core.sh` | ADSupport + ADCore |

@@ -31,4 +31,7 @@ if [[ ! -f "${pva_lib}" ]]; then
   exit 1
 fi
 
-echo "EPICS Base ready. Source: source ${DEST}/setEpicsEnv.sh"
+install_epics_env_script
+
+echo "EPICS Base ready. Per shell: source ${DEST}/setEpicsEnv.sh"
+echo "  (or ./scripts/setup-epics-shell.sh to add that line to ~/.bashrc)"

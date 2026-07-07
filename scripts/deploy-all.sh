@@ -23,5 +23,6 @@ run "${SCRIPT_DIR}/05-install-phoebus.sh"
 
 echo ""
 echo "Deployment complete."
-echo "  source ${EPICS_BASE:-/epics/epics-base}/setEpicsEnv.sh"
+echo "  source ${EPICS_BASE}/setEpicsEnv.sh    # caget, caput, …"
+echo "  ./scripts/setup-epics-shell.sh        # optional: add to ~/.bashrc"
 echo "  Edit IOC SERVER_URL in config/site.env, then: ${SCRIPT_DIR}/launch-ioc.sh"

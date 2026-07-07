@@ -169,6 +169,8 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 | Symptom | Likely fix |
 |---------|------------|
 | `Missing config/site.env` | `cp config/site.env.example config/site.env` |
+| `caget` / `caput` not found | EPICS Base does not add itself to PATH — `source ${EPICS_BASE}/setEpicsEnv.sh` or `./scripts/setup-epics-shell.sh`. Regenerate: `./scripts/configure-epics-env.sh` |
+| `setEpicsEnv.sh` does not exist | Same — run `./scripts/configure-epics-env.sh` (no rebuild needed) |
 | `Permission denied` on `/epics` | `sudo chown` or use `EPICS_ROOT=$HOME/epics` |
 | `git checkout` / tag not found | Set `GIT_DEPTH=0` in `site.env`, delete the failed clone dir, re-run |
 | `make` fails on ADSupport | Check log; ensure step 0 apt packages installed |
