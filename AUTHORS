@@ -1,0 +1,13 @@
+# Authors
+
+## Primary
+
+- **Kazimierz Gofron** — Oak Ridge National Laboratory, Spallation Neutron Source  
+  Deploy scripts, ADTimePix3 MediPix3 driver integration
+
+## Contributors and testers
+
+- **Erik** — ASI; Ubuntu 24.04 site install validation  
+- **ORNL detector group** — `detector1` and related test hosts
+
+Driver and upstream areaDetector work remain credited in their respective repositories.

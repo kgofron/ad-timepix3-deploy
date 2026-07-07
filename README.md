@@ -65,7 +65,10 @@ See [docs/architecture.md](docs/architecture.md) for screen layering and a possi
 | `scripts/launch-ioc.sh` | Boot `iocTimePix` (`IOC_STARTUP`, default `st_mpx3.cmd`) |
 | `scripts/launch-phoebus.sh` | Start Phoebus (`PHOEBUS_DEFAULT_SCREEN` or path argument) |
 
-Pinned versions live in `config/versions.env`. Site paths in `config/site.env`.
+Pinned versions live in `config/versions.env`. Site paths in `config/site.env`.  
+See [CHANGELOG.md](CHANGELOG.md) for deploy milestones.
+
+**PV prefix:** MediPix3 IOC uses `MPX3-TEST:` from `st_mpx3.cmd` (not overridden by `launch-ioc.sh`). Keep `IOC_PREFIX` in `site.env` aligned for documentation.
 
 ### areaDetector configure (Erik's server)
 

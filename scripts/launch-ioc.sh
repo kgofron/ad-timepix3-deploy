@@ -35,7 +35,7 @@ fi
 
 cd "${IOC_DIR}"
 echo "Starting IOC in ${IOC_DIR}"
-echo "  startup=${STARTUP}  PREFIX=${IOC_PREFIX}  SERVER_URL=${SERVER_URL}"
+echo "  startup=${STARTUP}  PREFIX=${IOC_PREFIX} (site.env; PV prefix is set in ${STARTUP})  SERVER_URL=${SERVER_URL}"
 echo "Ensure Serval is running before acquire."
 
 export SERVER_URL

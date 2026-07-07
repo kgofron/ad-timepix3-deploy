@@ -45,7 +45,10 @@ Edit `config/site.env` if needed:
 |---------|---------|----------------|
 | `EPICS_ROOT` | `/epics` | Use `/home/kg1/epics` for a home-dir test |
 | `SERVER_URL` | `http://localhost:8081` | Serval host/port on this machine |
-| `IOC_PREFIX` | `TPX3-TEST:` | Your choice |
+| `IOC_PREFIX` | `MPX3-TEST:` | Must match `PREFIX` in `st_mpx3.cmd` / `unique_mpx3.cmd` (reference for docs; edit driver startup to change PVs) |
+| `IOC_STARTUP` | `st_mpx3.cmd` | `st.cmd` for TimePix3-only profile |
+| `PHOEBUS_DEFAULT_SCREEN` | `MediPix3.bob` | Driver screen under `tpx3App/op/bob/` |
+| `PHOEBUS_SOURCE` | `sns` | `github` off-site (no SNS VPN) |
 | `MAKE_JOBS` | empty (= all CPUs) | Set e.g. `8` if you want to leave headroom |
 | `GIT_DEPTH` | `1` | Set `0` if a `checkout_tag` step fails |
 
