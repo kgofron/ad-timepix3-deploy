@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Add 'source ${EPICS_BASE}/setEpicsEnv.sh' to ~/.bashrc (idempotent).
+# ad-timepix3-deploy — add source setEpicsEnv.sh to ~/.bashrc (idempotent).
+# Author: Kazimierz Gofron (ORNL)
+# Copyright (c) UT-Battelle, LLC, Oak Ridge National Laboratory
+# SPDX-License-Identifier: MIT
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

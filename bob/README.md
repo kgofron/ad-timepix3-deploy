@@ -35,6 +35,10 @@ For Erik / ASI we only need the **main detector screen** plus ADCore collect/plu
 
 Screens here should use **relative macros** (`pathADCore`, `pathDriver`) so they work on any install path.
 
+## License
+
+Site Phoebus screens in this directory are part of [ad-timepix3-deploy](..) — MIT License, (c) UT-Battelle, LLC, Oak Ridge National Laboratory. See [LICENSE](../LICENSE).
+
 ## Status
 
 Placeholder — simplified `TimePix3.bob` to be derived from  

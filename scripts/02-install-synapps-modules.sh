@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# synApps modules required for areaDetector IOC applications.
+# ad-timepix3-deploy — synApps modules required for areaDetector IOC applications.
+# Author: Kazimierz Gofron (ORNL)
+# Copyright (c) UT-Battelle, LLC, Oak Ridge National Laboratory
+# SPDX-License-Identifier: MIT
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

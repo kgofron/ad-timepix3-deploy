@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Write areaDetector configure/RELEASE_*.local and CONFIG_SITE.local for this site.
+# ad-timepix3-deploy — write areaDetector configure/RELEASE_*.local and CONFIG_SITE.local.
+# Author: Kazimierz Gofron (ORNL)
+# Copyright (c) UT-Battelle, LLC, Oak Ridge National Laboratory
+# SPDX-License-Identifier: MIT
 # Paths come from config/site.env (default: /epics/support/areaDetector).
 set -euo pipefail
 

@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# ad-timepix3-deploy — clone and build EPICS Base; write setEpicsEnv.sh.
+# Author: Kazimierz Gofron (ORNL)
+# Copyright (c) UT-Battelle, LLC, Oak Ridge National Laboratory
+# SPDX-License-Identifier: MIT
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

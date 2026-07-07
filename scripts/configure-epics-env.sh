@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Write ${EPICS_BASE}/setEpicsEnv.sh (PATH, LD_LIBRARY_PATH for caget, caput, …).
+# ad-timepix3-deploy — regenerate ${EPICS_BASE}/setEpicsEnv.sh (PATH for caget, caput, …).
+# Author: Kazimierz Gofron (ORNL)
+# Copyright (c) UT-Battelle, LLC, Oak Ridge National Laboratory
+# SPDX-License-Identifier: MIT
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

@@ -87,3 +87,12 @@ Templates live in `config/areaDetector/*.template`. Re-apply after path changes:
 - [areaDetector installation guide](https://areadetector.github.io/areaDetector/install_guide.html)
 - [ADTimePix3](https://github.com/areaDetector/ADTimePix3) — requires asyn ≥ R4-45, ADCore R3-11+, C++17
 - [ADViewers](https://github.com/areaDetector/ADViewers) — community viewers (ImageJ, Python, IDL; Phoebus `.bob` TBD)
+
+## Authors and license
+
+Developed at **Oak Ridge National Laboratory** (ORNL), Spallation Neutron Source, for areaDetector TimePix3 / MediPix3 site deployment (e.g. ASI).
+
+**Author:** Kazimierz Gofron (ORNL)  
+**Copyright:** (c) 2026 UT-Battelle, LLC, Oak Ridge National Laboratory  
+
+Licensed under the [MIT License](LICENSE). Driver and detector-specific code remain under their respective repositories ([ADTimePix3](https://github.com/kgofron/ADTimePix3)).

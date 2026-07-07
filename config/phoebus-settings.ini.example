@@ -1,5 +1,7 @@
-# Phoebus site settings — installed to ${PHOEBUS_HOME}/settings.ini
-# Placeholders @BOB_ROOT@ and @ADTIMEPix3_BOB@ are replaced by 05-install-phoebus.sh
+# Phoebus site settings — ad-timepix3-deploy
+# Author: K. Gofron (ORNL)
+# SPDX-License-Identifier: MIT
+# Installed to ${PHOEBUS_HOME}/settings.ini; @BOB_ROOT@ and @ADTIMEPix3_BOB@ replaced by 05-install-phoebus.sh
 
 org.phoebus.ui/adc_archives_list=
 org.phoebus.pv/default=ca

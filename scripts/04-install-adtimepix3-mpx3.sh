@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# ADTimePix3 MediPix3 development driver (kgofron fork).
+# ad-timepix3-deploy — clone and build ADTimePix3_mpx3 MediPix3 driver (kgofron fork).
+# Author: Kazimierz Gofron (ORNL)
+# Copyright (c) UT-Battelle, LLC, Oak Ridge National Laboratory
+# SPDX-License-Identifier: MIT
 # Requires asyn >= R4-45 and ADCore with destructible driver support.
 set -euo pipefail
 

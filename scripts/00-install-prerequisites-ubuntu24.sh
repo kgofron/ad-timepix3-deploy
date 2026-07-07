@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Ubuntu 24.04 packages for EPICS Base, areaDetector, ADTimePix3 (C++17), Phoebus.
+# ad-timepix3-deploy — Ubuntu 24.04 packages for EPICS Base, areaDetector, ADTimePix3, Phoebus.
+# Author: Kazimierz Gofron (ORNL)
+# Copyright (c) UT-Battelle, LLC, Oak Ridge National Laboratory
+# SPDX-License-Identifier: MIT
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
