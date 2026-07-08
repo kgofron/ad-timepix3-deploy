@@ -42,7 +42,9 @@ Display path order:
 
 1. `bob/main/detectors.bob` — Camera launcher (`Sys`/`Dev` → `MPX3-TEST:` / `TPX3-TEST:`)
 2. `bob/ADet/R3-15/common/` — PVA viewer (pinned to ADCore master / pre-R3-15)
-3. `ADTimePix3_mpx3/tpx3App/op/bob/` — driver Expert panels (`TimePix3.bob`, `MediPix3/MediPix3.bob`)
+3. `bob/ADet/R3-15/ADCore/R3-15/` — ADCore `.bob` screens (from built `autoconvert`, install sync)
+4. `bob/ADet/R3-15/ADTimePix3/R1-0/` — Expert tops + driver embeds (rsync at install)
+5. `ADTimePix3_mpx3/tpx3App/op/bob/` — driver source for support panels (also in model path)
 
 ## IOC
 
@@ -61,10 +63,11 @@ ORNL SNS screens live under `/epics/GUI/SNS/bob/ADet/R3-11/`. They reference:
 - `pathADet` → facility `bob/main` (beamline navigation)
 - `pathADCore` → versioned ADCore OPI embeds
 
-This deploy vendors a **minimum** common set under `bob/ADet/R3-15/` (name tracks ADCore master ≈ R3-15), adapted from SNS R3-11:
+This deploy vendors under `bob/ADet/R3-15/` (name tracks ADCore master ≈ R3-15), adapted from SNS R3-11:
 
 - `main/detectors.bob` — Camera menu only (TimePix / MediPix PVA)
 - `common/color_camera_pva.bob` + `_ad_view_*` — operator PVA view
-- Expert → driver `TimePix3.bob` / `MediPix3/MediPix3.bob` (not a full SNS facility copy)
+- `ADCore/R3-15/*.bob` — from ADCore build `ADApp/op/bob/autoconvert` (not vendored SNS `.opi`)
+- `ADTimePix3/R1-0/` — Expert tops; `open_display` uses relative paths from `subscreens/`
 
 ASI deployment **drops** Logbook/Archiver/Motion and facility `pathADet` absolute paths.

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ad-timepix3-deploy lab screen: ADet/R3-15 (adapted from SNS ADet/R3-11).
      Macros: Sys Dev Cam Image Stats Pva. Effective P=$(Sys)$(Dev).
-     Expert opens driver TimePix3.bob / MediPix3/MediPix3.bob via Phoebus model paths. -->
+     Expert opens ADet/R3-15/ADTimePix3/R1-0/ screens (relative from subscreens/). -->
 <!--Saved on 2024-05-21 13:41:44 by kg1-->
 <display version="2.0.0">
   <name>$(NAME)</name>

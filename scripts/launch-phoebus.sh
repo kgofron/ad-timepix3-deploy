@@ -26,6 +26,8 @@ resolve_phoebus_screen() {
   for candidate in \
     "${BOB_ROOT}/${screen}" \
     "${BOB_ROOT}/main/${screen}" \
+    "${BOB_ROOT}/ADet/R3-15/ADTimePix3/R1-0/${screen}" \
+    "${BOB_ROOT}/ADet/R3-15/ADTimePix3/R1-0/MediPix3/${screen}" \
     "${ADTIMEPix3_HOME}/tpx3App/op/bob/${screen}" \
     "${ADTIMEPix3_HOME}/tpx3App/op/bob/MediPix3/${screen}"
   do

@@ -5,8 +5,12 @@ Detailed history: `git log`.
 
 ## Unreleased
 
+- ADCore Phoebus: sync `ADApp/op/bob/autoconvert` → `bob/ADet/R3-15/ADCore/R3-15/` (not vendored SNS `.opi`)
+- Vendor `bob/ADet/R3-15/ADCore/R3-15/` install path for Expert embeds
+- Expert tops under `bob/ADet/R3-15/ADTimePix3/R1-0/`; fix `open_display` relative paths
+- `05-install-phoebus.sh`: rsync driver bob embeds; refresh `settings.ini` model paths
 - Phoebus lab tree: `bob/main/detectors.bob` + `bob/ADet/R3-15/common` (from SNS R3-11, retargeted)
-- Default launch screen `main/detectors.bob`; Expert → `TimePix3.bob` / `MediPix3/MediPix3.bob`
+- Default launch screen `main/detectors.bob`
 - Document `caget -V` and MediPix3 subdirectory path
 
 ## 2026-07 — MediPix3 site deploy (ORNL / ASI)

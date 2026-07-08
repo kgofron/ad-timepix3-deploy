@@ -275,3 +275,34 @@ install_adcore_ioc_boot_files() {
     fi
   done
 }
+
+# ADCore Phoebus screens: bob/autoconvert from the built checkout (ADCORE_TAG / master ≈ R3-15).
+# Installed to site bob tree; not vendored as legacy SNS .opi copies in git.
+install_adcore_phoebus_bob() {
+  local src="${AREA_DETECTOR}/ADCore/ADApp/op/bob/autoconvert"
+  local dest="${BOB_ROOT}/ADet/R3-15/ADCore/R3-15"
+  local op_top="${AREA_DETECTOR}/ADCore/ADApp/op"
+
+  if [[ ! -f "${src}/ADShutter.bob" ]]; then
+    if [[ -d "${op_top}" ]]; then
+      echo "==> Building ADCore Phoebus bob screens (autoconvert)"
+      make -C "${op_top}" -j"${MAKE_JOBS}"
+    fi
+  fi
+
+  if [[ ! -f "${src}/ADShutter.bob" ]]; then
+    echo "WARN: ${src}/ADShutter.bob missing — run 03-install-areadetector-core.sh first" >&2
+    return 0
+  fi
+
+  mkdir -p "${dest}"
+  rsync -a --delete "${src}/" "${dest}/"
+
+  # Autoconvert bob files may still reference .opi in actions; site tree only has .bob.
+  find "${dest}" -name '*.bob' -exec sed -i \
+    -e 's/\(<file>\)\([^<]*\)\.opi\(<\/file>\)/\1\2.bob\3/g' \
+    -e 's/\(<path>\)\([^<]*\)\.opi\(<\/path>\)/\1\2.bob\3/g' \
+    {} +
+
+  echo "ADCore Phoebus screens synced: ${dest} (tag ${ADCORE_TAG:-master}, autoconvert)"
+}

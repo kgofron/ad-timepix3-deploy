@@ -11,6 +11,8 @@ bob/
     detectors.bob              ← Camera launcher (2 choices)
   ADet/
     R3-15/                     ← pin matching ADCore master / pre-R3-15
+      ADCore/R3-15/            ← ADCore .bob from build autoconvert (install sync)
+      ADTimePix3/R1-0/         ← Expert tops + driver embeds (install sync)
       common/
         color_camera_pva.bob   ← PVA operator view
         subscreens/
@@ -27,19 +29,21 @@ detectors.bob
        └─ ADMediPix3 PVA  → same screen
              macros: Sys=MPX3-TEST  Dev=:  Cam=cam1: …
                 └─ Expert (AD detail)
-                     ├─ TimePix3.bob
-                     └─ MediPix3/MediPix3.bob   ← resolved via driver op/bob path
+                     ├─ ADet/R3-15/ADTimePix3/R1-0/TimePix3.bob
+                     └─ ADet/R3-15/ADTimePix3/R1-0/MediPix3/MediPix3.bob
 ```
 
 Effective PV prefix is **`$(Sys)$(Dev)`** (SNS convention), e.g. `MPX3-TEST:`.
 
-Driver tops stay in **`ADTimePix3_mpx3/tpx3App/op/bob/`** (not duplicated here).
+Expert **top** screens are vendored under **`bob/ADet/R3-15/ADTimePix3/R1-0/`** (SNS pattern).
+Driver **support** panels (`ADSetup`, `Acquire/`, `Detector/`, …) are rsynced from
+`ADTimePix3_mpx3/tpx3App/op/bob/` by `05-install-phoebus.sh`.
 
 ## Provenance
 
-`ADet/R3-15/common/*` started from SNS `/epics/GUI/SNS/bob/ADet/R3-11/common`
-and was adapted for this deploy (CORE_VER, Expert → `.bob` only, no facility menu).
-Screen tree name is **R3-15** to align with ADCore `master` (forthcoming R3-15 tag).
+`ADet/R3-15/common/*` started from SNS `/epics/GUI/SNS/bob/ADet/R3-11/common`.
+`ADCore/R3-15/*.bob` is synced from `${AREA_DETECTOR}/ADCore/ADApp/op/bob/autoconvert`
+at install (matches `ADCORE_TAG`). Expert layout follows SNS `ADTimePix3/R1-0/` pattern.
 
 ## Launch
 

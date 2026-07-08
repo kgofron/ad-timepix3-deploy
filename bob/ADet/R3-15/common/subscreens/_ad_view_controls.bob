@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ad-timepix3-deploy: Expert opens TimePix3.bob and MediPix3/MediPix3.bob
-     (resolved via Phoebus model paths to ADTimePix3_mpx3/.../op/bob). -->
+<!-- ad-timepix3-deploy: Expert opens vendored ADet/R3-15/ADTimePix3/R1-0/ screens
+     (relative path from subscreens/, same pattern as SNS ADet/R3-11). -->
 <display version="2.0.0">
   <macros>
     <P>$(Sys)$(Dev)</P>
@@ -652,7 +652,7 @@
         <actions>
       <action type="open_display">
         <description>ADTimePix3</description>
-        <file>TimePix3.bob</file>
+        <file>../../ADTimePix3/R1-0/TimePix3.bob</file>
         <macros>
           <P>$(Sys)$(Dev)</P>
           <R>$(Cam)</R>
@@ -661,7 +661,7 @@
       </action>
       <action type="open_display">
         <description>ADMediPix3</description>
-        <file>MediPix3/MediPix3.bob</file>
+        <file>../../ADTimePix3/R1-0/MediPix3/MediPix3.bob</file>
         <macros>
           <P>$(Sys)$(Dev)</P>
           <R>$(Cam)</R>

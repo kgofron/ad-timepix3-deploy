@@ -151,22 +151,22 @@ If `SERVER_URL` is not in `st_base.cmd` yet, edit it under:
 ## Step 6 — Test Phoebus
 
 Site launcher and PVA common screens: `bob/main/detectors.bob`, `bob/ADet/R3-15/`.  
-Driver Expert screens: `ADTimePix3_mpx3/tpx3App/op/bob/` (e.g. `MediPix3/MediPix3.bob`).
+Expert tops: `bob/ADet/R3-15/ADTimePix3/R1-0/` (ADCore OPIs under `ADCore/R3-15/`).
 
 ```bash
-# List site + driver screens
+# List site bob tree (after 05-install-phoebus.sh)
 ls /epics/GUI/bob/main/
-ls /epics/GUI/bob/ADet/R3-15/common/
-ls /epics/support/areaDetector/ADTimePix3_mpx3/tpx3App/op/bob/MediPix3/
+ls /epics/GUI/bob/ADet/R3-15/common/subscreens/
+ls /epics/GUI/bob/ADet/R3-15/ADCore/R3-15/ADShutter.bob
+ls /epics/GUI/bob/ADet/R3-15/ADTimePix3/R1-0/MediPix3/MediPix3.bob
+ls /epics/GUI/bob/ADet/R3-15/ADTimePix3/R1-0/ADSetup.bob   # synced from driver
 
 # Launch Phoebus (needs DISPLAY / X11 or VNC) — default: main/detectors.bob
-cd /home/kg1/src/github/ad-timepix3-deploy
+cd ~/Documents/src/github/ad-timepix3-deploy   # or your clone path
+./scripts/05-install-phoebus.sh              # after git pull — rsyncs bob + driver embeds
 ./scripts/launch-phoebus.sh
 # Camera → ADMediPix3 PVA sets Sys=MPX3-TEST Dev=: (no manual P/R)
-# Expert (AD detail) → MediPix3/MediPix3.bob
-#
-# Or open driver screen directly:
-./scripts/launch-phoebus.sh MediPix3/MediPix3.bob
+# Expert (AD detail) → ADet/R3-15/ADTimePix3/R1-0/MediPix3/MediPix3.bob
 ```
 
 Check versions with `caget -V` (not `caget --version`).
@@ -200,6 +200,9 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 | asyn: `sCalcoutRecord.h: No such file` | Build **calc before asyn**; pull latest script order (`seq` → `sscan` → `calc` → `asyn` → …) |
 | Re-run after partial synApps build | Re-run `./scripts/02-install-synapps-modules.sh` — skips modules with `.deploy-installed`; set `FORCE_SYNAPPS_REBUILD=1` to rebuild all |
 | Phoebus won’t open | Java/display; run `java -version`, check `$DISPLAY`. SNS source bundles JDK at `/epics/GUI/jdk` |
+| Expert: `Cannot open .../subscreens/MediPix3/MediPix3.bob` | Old `_ad_view_controls.bob` — `git pull` and re-run `05-install-phoebus.sh`; Expert must use `../../ADTimePix3/R1-0/...` |
+| Expert: `Failed to load embedded display` for `ADShutter.bob` etc. | ADCore bob not synced — run step 03 then `05-install-phoebus.sh` (`ADApp/op/bob/autoconvert`) |
+| Expert: empty ADSetup / Collect panels | Driver embeds not synced — run step 04 then `05-install-phoebus.sh` (needs `ADTimePix3_mpx3/tpx3App/op/bob`) |
 | `05-install-phoebus.sh` leaves empty `/epics/GUI` | Default is `PHOEBUS_SOURCE=sns`; use `github` off-site. Re-run step 05 on SNS/VPN |
 | GitHub Phoebus download 404 | Old script used `phoebus-product-*.zip` (does not exist); current deploy uses `phoebus-*-linux.tar.gz` |
 | IOC can’t connect | Start Serval; fix `SERVER_URL` in IOC startup files |
