@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PVA image + NDStats cursor profiles (replaces CSS loc:// hpx/hpy/vpx/vpy).
+     Macros: Sys, Dev, Pva, Stats, ProfileStats, DID (from parent).
+     Requires NDStatsProfiles.db loaded in IOC; ProfileStats:ComputeProfiles enabled. -->
+<display version="2.0.0">
+  <background_color>
+    <color red="240" green="240" blue="240">
+    </color>
+  </background_color>
+  <actions>
+  </actions>
+  <grid_step_x>6</grid_step_x>
+  <grid_step_y>6</grid_step_y>
+  <widget type="xyplot" version="3.0.0">
+    <name>VerticalProfile</name>
+    <width>160</width>
+    <height>750</height>
+    <title_font>
+      <font family="Arial" style="BOLD" size="11.881188118811881">
+      </font>
+    </title_font>
+    <show_legend>false</show_legend>
+    <actions>
+    </actions>
+    <x_axis>
+      <title></title>
+      <autoscale>true</autoscale>
+      <log_scale>false</log_scale>
+      <minimum>0.0</minimum>
+      <maximum>100.0</maximum>
+      <show_grid>true</show_grid>
+      <title_font>
+        <font family="Arial" style="BOLD" size="8.910891089108912">
+        </font>
+      </title_font>
+      <scale_font>
+        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+        </font>
+      </scale_font>
+      <visible>true</visible>
+    </x_axis>
+    <y_axes>
+      <y_axis>
+        <title>Pixels</title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <minimum>0.0</minimum>
+        <maximum>100.0</maximum>
+        <show_grid>true</show_grid>
+        <title_font>
+          <font family="Arial" style="BOLD" size="8.910891089108912">
+          </font>
+        </title_font>
+        <scale_font>
+          <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+          </font>
+        </scale_font>
+        <on_right>false</on_right>
+        <visible>true</visible>
+        <color>
+          <color name="Text" red="0" green="0" blue="0">
+          </color>
+        </color>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>Column profile</name>
+        <x_pv>$(Sys)$(Dev)$(ProfileStats)ProfileCursorY_RBV</x_pv>
+        <y_pv>$(Sys)$(Dev)Cal:ySelAxisM</y_pv>
+        <err_pv></err_pv>
+        <axis>0</axis>
+        <trace_type>1</trace_type>
+        <color>
+          <color red="21" green="21" blue="196">
+          </color>
+        </color>
+        <line_width>1</line_width>
+        <line_style>0</line_style>
+        <point_type>0</point_type>
+        <point_size>4</point_size>
+        <visible>true</visible>
+      </trace>
+    </traces>
+  </widget>
+  <widget type="xyplot" version="3.0.0">
+    <name>HorizontalProfile</name>
+    <x>159</x>
+    <y>756</y>
+    <width>1000</width>
+    <height>160</height>
+    <title_font>
+      <font family="Arial" style="BOLD" size="11.881188118811881">
+      </font>
+    </title_font>
+    <show_legend>false</show_legend>
+    <actions>
+    </actions>
+    <x_axis>
+      <title>Pixels</title>
+      <autoscale>true</autoscale>
+      <log_scale>false</log_scale>
+      <minimum>0.0</minimum>
+      <maximum>100.0</maximum>
+      <show_grid>true</show_grid>
+      <title_font>
+        <font family="Arial" style="BOLD" size="8.910891089108912">
+        </font>
+      </title_font>
+      <scale_font>
+        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+        </font>
+      </scale_font>
+      <visible>true</visible>
+    </x_axis>
+    <y_axes>
+      <y_axis>
+        <title></title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <minimum>0.0</minimum>
+        <maximum>100.0</maximum>
+        <show_grid>true</show_grid>
+        <title_font>
+          <font family="Arial" style="BOLD" size="8.910891089108912">
+          </font>
+        </title_font>
+        <scale_font>
+          <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+          </font>
+        </scale_font>
+        <on_right>false</on_right>
+        <visible>true</visible>
+        <color>
+          <color name="Text" red="0" green="0" blue="0">
+          </color>
+        </color>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>Row profile</name>
+        <x_pv>$(Sys)$(Dev)Cal:xSelAxisM</x_pv>
+        <y_pv>$(Sys)$(Dev)$(ProfileStats)ProfileCursorX_RBV</y_pv>
+        <err_pv></err_pv>
+        <axis>0</axis>
+        <trace_type>1</trace_type>
+        <color>
+          <color red="21" green="21" blue="196">
+          </color>
+        </color>
+        <line_width>1</line_width>
+        <line_style>0</line_style>
+        <point_type>0</point_type>
+        <point_size>4</point_size>
+        <visible>true</visible>
+      </trace>
+    </traces>
+  </widget>
+  <widget type="image" version="2.0.0">
+    <name>Intensity Graph</name>
+    <pv_name>pva://$(Sys)$(Dev)$(Pva)Image</pv_name>
+    <x>159</x>
+    <width>991</width>
+    <height>745</height>
+    <background_color>
+      <color name="Transparent" red="255" green="255" blue="255" alpha="0">
+      </color>
+    </background_color>
+    <x_axis>
+      <visible>true</visible>
+      <title></title>
+      <minimum>0.0</minimum>
+      <maximum>100.0</maximum>
+      <title_font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </title_font>
+      <scale_font>
+        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+        </font>
+      </scale_font>
+    </x_axis>
+    <y_axis>
+      <visible>true</visible>
+      <title></title>
+      <minimum>0.0</minimum>
+      <maximum>100.0</maximum>
+      <title_font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </title_font>
+      <scale_font>
+        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+        </font>
+      </scale_font>
+    </y_axis>
+    <x_pv>$(Sys)$(Dev)$(ProfileStats)CursorX</x_pv>
+    <y_pv>$(Sys)$(Dev)$(ProfileStats)CursorY</y_pv>
+    <cursor_crosshair>true</cursor_crosshair>
+    <actions>
+    </actions>
+    <rules>
+      <rule name="Image Width" prop_id="data_width" out_exp="true">
+        <exp bool_exp="pvInt2==0">
+          <expression>pvInt0</expression>
+        </exp>
+        <exp bool_exp="pvInt2==1">
+          <expression>pvInt0</expression>
+        </exp>
+        <exp bool_exp="pvInt2==2">
+          <expression>pvInt1</expression>
+        </exp>
+        <pv_name>$(Sys)$(Dev)$(Pva)ArraySize0_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Pva)ArraySize1_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Pva)ColorMode_RBV</pv_name>
+      </rule>
+      <rule name="Image Height" prop_id="data_height" out_exp="true">
+        <exp bool_exp="pvInt2==0">
+          <expression>pvInt0</expression>
+        </exp>
+        <exp bool_exp="pvInt2==1">
+          <expression>pvInt0</expression>
+        </exp>
+        <exp bool_exp="pvInt2==2">
+          <expression>pvInt1</expression>
+        </exp>
+        <pv_name>$(Sys)$(Dev)$(Pva)ArraySize1_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Pva)ArraySize2_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Pva)ColorMode_RBV</pv_name>
+      </rule>
+      <rule name="X Scale" prop_id="x_axis.maximum" out_exp="true">
+        <exp bool_exp="pvInt2==0">
+          <expression>pvInt0</expression>
+        </exp>
+        <exp bool_exp="pvInt2==1">
+          <expression>pvInt0</expression>
+        </exp>
+        <exp bool_exp="pvInt2==2">
+          <expression>pvInt1</expression>
+        </exp>
+        <pv_name>$(Sys)$(Dev)$(Pva)ArraySize0_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Pva)ArraySize1_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Pva)ColorMode_RBV</pv_name>
+      </rule>
+      <rule name="Y Scale" prop_id="y_axis.maximum" out_exp="true">
+        <exp bool_exp="pvInt2==0">
+          <expression>pvInt0</expression>
+        </exp>
+        <exp bool_exp="pvInt2==1">
+          <expression>pvInt0</expression>
+        </exp>
+        <exp bool_exp="pvInt2==2">
+          <expression>pvInt1</expression>
+        </exp>
+        <pv_name>$(Sys)$(Dev)$(Pva)ArraySize1_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Pva)ArraySize2_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Pva)ColorMode_RBV</pv_name>
+      </rule>
+      <rule name="Display ROI1" prop_id="roi_0_visible" out_exp="false">
+        <exp bool_exp="(pv0 &gt; 0)">
+          <value>true</value>
+        </exp>
+        <pv_name>loc://$(DID)DispROI1(0)</pv_name>
+      </rule>
+      <rule name="Display ROI2" prop_id="roi_1_visible" out_exp="false">
+        <exp bool_exp="(pv0 &gt; 0)">
+          <value>true</value>
+        </exp>
+        <pv_name>loc://$(DID)DispROI2(0)</pv_name>
+      </rule>
+      <rule name="Display ROI3" prop_id="roi_2_visible" out_exp="false">
+        <exp bool_exp="(pv0 &gt; 0)">
+          <value>true</value>
+        </exp>
+        <pv_name>loc://$(DID)DispROI3(0)</pv_name>
+      </rule>
+      <rule name="Display ROI4" prop_id="roi_3_visible" out_exp="false">
+        <exp bool_exp="(pv0 &gt; 0)">
+          <value>true</value>
+        </exp>
+        <pv_name>loc://$(DID)DispROI4(0)</pv_name>
+      </rule>
+      <rule name="ScaleMax" prop_id="maximum" out_exp="true">
+        <exp bool_exp="pv1 == 2.0">
+          <expression>pv3 + (pv5 * pv4)</expression>
+        </exp>
+        <exp bool_exp="pv1 == 1.0">
+          <expression>pv2</expression>
+        </exp>
+        <exp bool_exp="pv1 == 0.0">
+          <expression>pv0</expression>
+        </exp>
+        <pv_name>loc://$(DID)Max</pv_name>
+        <pv_name>loc://$(DID)AutoScale</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Stats)MaxValue_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Stats)MeanValue_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Stats)Sigma_RBV</pv_name>
+        <pv_name>loc://$(DID)NSigma</pv_name>
+      </rule>
+      <rule name="ScaleMin" prop_id="minimum" out_exp="true">
+        <exp bool_exp="pv0 == 1.0">
+          <expression>pv3</expression>
+        </exp>
+        <exp bool_exp="pv0 == 2.0">
+          <expression>pv2 - (pv4 * pv1)</expression>
+        </exp>
+        <exp bool_exp="pv0 == 0.0">
+          <expression>pv5</expression>
+        </exp>
+        <pv_name>loc://$(DID)AutoScale</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Stats)Sigma_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Stats)MeanValue_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Stats)MinValue_RBV</pv_name>
+        <pv_name>loc://$(DID)NSigma</pv_name>
+        <pv_name>loc://$(DID)Min</pv_name>
+      </rule>
+      <rule name="RGB" prop_id="rgb_mode" out_exp="false">
+        <exp bool_exp="pvInt0==2">
+          <value>true</value>
+        </exp>
+        <exp bool_exp="pvInt0==0">
+          <value>false</value>
+        </exp>
+        <pv_name>$(Sys)$(Dev)$(Pva)ColorMode_RBV</pv_name>
+      </rule>
+      <rule name="Show Ramp" prop_id="show_ramp" out_exp="true">
+        <exp bool_exp="pvInt0==0">
+          <expression>false</expression>
+        </exp>
+        <exp bool_exp="pvInt0==2">
+          <expression>false</expression>
+        </exp>
+        <pv_name>$(Sys)$(Dev)$(Pva)ColorMode_RBV</pv_name>
+      </rule>
+    </rules>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <data_width>0</data_width>
+    <data_height>0</data_height>
+    <autoscale>false</autoscale>
+    <maximum>65000.0</maximum>
+  </widget>
+</display>

@@ -3,6 +3,12 @@
 Deploy milestones for [ad-timepix3-deploy](https://github.com/kgofron/ad-timepix3-deploy).  
 Detailed history: `git log`.
 
+## Unreleased
+
+- Phoebus lab tree: `bob/main/detectors.bob` + `bob/ADet/R3-15/common` (from SNS R3-11, retargeted)
+- Default launch screen `main/detectors.bob`; Expert → `TimePix3.bob` / `MediPix3/MediPix3.bob`
+- Document `caget -V` and MediPix3 subdirectory path
+
 ## 2026-07 — MediPix3 site deploy (ORNL / ASI)
 
 ### Launch and operator workflow

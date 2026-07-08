@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ad-timepix3-deploy: Expert opens TimePix3.bob and MediPix3/MediPix3.bob
+     (resolved via Phoebus model paths to ADTimePix3_mpx3/.../op/bob). -->
+<display version="2.0.0">
+  <macros>
+    <P>$(Sys)$(Dev)</P>
+    <R>$(Cam)</R>
+    <CORE_VER>R3-15</CORE_VER>
+  </macros>
+  <width>350</width>
+  <height>480</height>
+  <background_color>
+    <color red="240" green="240" blue="240">
+    </color>
+  </background_color>
+  <actions>
+  </actions>
+  <grid_step_x>6</grid_step_x>
+  <grid_step_y>6</grid_step_y>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <text>Exposure Time</text>
+    <x>12</x>
+    <y>5</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)AcquireTime</pv_name>
+    <x>126</x>
+    <y>5</y>
+    <height>19</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>1</format>
+    <precision>6</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color name="Foreground" red="0" green="0" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)AcquirePeriod</pv_name>
+    <x>126</x>
+    <y>30</y>
+    <height>19</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <precision>6</precision>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color name="Foreground" red="0" green="0" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)NumImages</pv_name>
+    <x>126</x>
+    <y>55</y>
+    <height>19</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color name="Foreground" red="0" green="0" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_8</name>
+    <text>Num Images</text>
+    <x>12</x>
+    <y>55</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_9</name>
+    <text>Acquire Period</text>
+    <x>12</x>
+    <y>30</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_1</name>
+    <text>Images Complete</text>
+    <x>12</x>
+    <y>80</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <text>Exp / Image</text>
+    <x>12</x>
+    <y>105</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)NumExposures</pv_name>
+    <x>126</x>
+    <y>105</y>
+    <height>19</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color name="Foreground" red="0" green="0" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_3</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)NumExposures_RBV</pv_name>
+    <x>242</x>
+    <y>107</y>
+    <width>96</width>
+    <height>15</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>2</border_width>
+    <border_color>
+      <color name="S_ind" red="0" green="177" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_4</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)NumImagesCounter_RBV</pv_name>
+    <x>242</x>
+    <y>82</y>
+    <width>96</width>
+    <height>15</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>2</border_width>
+    <border_color>
+      <color name="S_ind" red="0" green="177" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_7</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)NumImages_RBV</pv_name>
+    <x>242</x>
+    <y>57</y>
+    <width>96</width>
+    <height>15</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>2</border_width>
+    <border_color>
+      <color name="S_ind" red="0" green="177" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_6</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)AcquirePeriod_RBV</pv_name>
+    <x>242</x>
+    <y>32</y>
+    <width>96</width>
+    <height>15</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <precision>6</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>2</border_width>
+    <border_color>
+      <color name="S_ind" red="0" green="177" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_5</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)AcquireTime_RBV</pv_name>
+    <x>242</x>
+    <y>7</y>
+    <width>96</width>
+    <height>15</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <precision>6</precision>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>2</border_width>
+    <border_color>
+      <color name="S_ind" red="0" green="177" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_1</name>
+    <text>Image Mode</text>
+    <x>12</x>
+    <y>135</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>Trigger Mode</text>
+    <x>12</x>
+    <y>165</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_3</name>
+    <text>Acquire</text>
+    <x>12</x>
+    <y>200</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <description>WritePV</description>
+        <pv_name>$(pv_name)</pv_name>
+        <value>Acquire</value>
+      </action>
+    </actions>
+    <pv_name>$(Sys)$(Dev)$(Cam)Acquire</pv_name>
+    <text>Start</text>
+    <x>195</x>
+    <y>200</y>
+    <width>60</width>
+    <height>26</height>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <description>WritePV</description>
+        <pv_name>$(pv_name)</pv_name>
+        <value>Done</value>
+      </action>
+    </actions>
+    <pv_name>$(Sys)$(Dev)$(Cam)Acquire</pv_name>
+    <text>Stop</text>
+    <x>278</x>
+    <y>200</y>
+    <width>60</width>
+    <height>26</height>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_4</name>
+    <text>Detector State</text>
+    <x>12</x>
+    <y>235</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_6</name>
+    <text>Images Acquired</text>
+    <x>12</x>
+    <y>270</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_7</name>
+    <text>Image Rate</text>
+    <x>12</x>
+    <y>295</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Input</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)ArrayCounter</pv_name>
+    <x>132</x>
+    <y>270</y>
+    <height>19</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color name="Foreground" red="0" green="0" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)ArrayCounter_RBV</pv_name>
+    <x>242</x>
+    <y>272</y>
+    <width>96</width>
+    <height>15</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>2</border_width>
+    <border_color>
+      <color name="S_ind" red="0" green="177" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)ArrayRate_RBV</pv_name>
+    <x>242</x>
+    <y>297</y>
+    <width>96</width>
+    <height>15</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <horizontal_alignment>2</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>2</border_width>
+    <border_color>
+      <color name="S_ind" red="0" green="177" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)AsynIO.CNCT</pv_name>
+    <x>240</x>
+    <y>365</y>
+    <width>100</width>
+    <height>25</height>
+    <off_label>Disconnected</off_label>
+    <off_color>
+      <color name="Red" red="255" green="0" blue="0">
+      </color>
+    </off_color>
+    <on_label>Connected</on_label>
+    <foreground_color>
+      <color name="Foreground" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <line_color>
+      <color red="150" green="150" blue="150">
+      </color>
+    </line_color>
+    <square>true</square>
+    <actions>
+    </actions>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="write_pv">
+        <description>WritePV</description>
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+      </action>
+    </actions>
+    <pv_name>$(Sys)$(Dev)$(Cam)AsynIO.CNCT</pv_name>
+    <text>CONNECT</text>
+    <x>132</x>
+    <y>365</y>
+    <height>25</height>
+    <foreground_color>
+      <color name="Major" red="255" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_7</name>
+    <text>Connect</text>
+    <x>12</x>
+    <y>365</y>
+    <width>67</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_7</name>
+    <text>Reboot IOC</text>
+    <x>12</x>
+    <y>400</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="write_pv">
+        <description>WritePV</description>
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+      </action>
+    </actions>
+    <pv_name>$(Sys)$(Dev):SYSRESET</pv_name>
+    <text>REBOOT</text>
+    <x>240</x>
+    <y>400</y>
+    <height>25</height>
+    <foreground_color>
+      <color name="Major" red="255" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="combo" version="2.0.0">
+    <name>Menu Button</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)ImageMode</pv_name>
+    <x>126</x>
+    <y>135</y>
+    <height>25</height>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="combo" version="2.0.0">
+    <name>Menu Button_1</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)TriggerMode</pv_name>
+    <x>126</x>
+    <y>165</y>
+    <height>25</height>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_12</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)TriggerMode_RBV</pv_name>
+    <x>242</x>
+    <y>167</y>
+    <width>96</width>
+    <height>15</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>2</border_width>
+    <border_color>
+      <color name="S_ind" red="0" green="177" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_13</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)ImageMode_RBV</pv_name>
+    <x>242</x>
+    <y>137</y>
+    <width>96</width>
+    <height>15</height>
+    <background_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>2</border_width>
+    <border_color>
+      <color name="S_ind" red="0" green="177" blue="0">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_21</name>
+    <text>areaDetector Plugins</text>
+    <x>12</x>
+    <y>325</y>
+    <width>157</width>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Menu Button_2</name>
+        <actions>
+      <action type="open_display">
+        <description>ADTimePix3</description>
+        <file>TimePix3.bob</file>
+        <macros>
+          <P>$(Sys)$(Dev)</P>
+          <R>$(Cam)</R>
+        </macros>
+        <target>tab</target>
+      </action>
+      <action type="open_display">
+        <description>ADMediPix3</description>
+        <file>MediPix3/MediPix3.bob</file>
+        <macros>
+          <P>$(Sys)$(Dev)</P>
+          <R>$(Cam)</R>
+        </macros>
+        <target>tab</target>
+      </action>
+    </actions>
+    <text>Expert (AD detail) </text>
+    <x>195</x>
+    <y>325</y>
+    <width>145</width>
+    <height>25</height>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <tooltip>$(actions)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Menu Button_3</name>
+    <actions>
+      <action type="command">
+        <description>ImageJ CA</description>
+        <command>echo ImageJ CA not configured in lab deploy: $(Sys)$(Dev)image1:</command>
+      </action>
+      <action type="command">
+        <description>ImageJ Pva</description>
+        <command>echo ImageJ PVA not configured in lab deploy: $(Sys)$(Dev)Pva1:Image</command>
+      </action>
+    </actions>
+    <text>ImageJ</text>
+    <x>195</x>
+    <y>440</y>
+    <width>145</width>
+    <height>25</height>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <tooltip>$(actions)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Menu Button_4</name>
+    <actions>
+      <action type="open_display">
+        <description>Lights on</description>
+        <file>dio/ad-dio.opi</file>
+        <target>tab</target>
+      </action>
+    </actions>
+    <text>DIO / Lights</text>
+    <x>12</x>
+    <y>440</y>
+    <width>145</width>
+    <height>25</height>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <tooltip>$(actions)</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_14</name>
+    <pv_name>$(Sys)$(Dev)$(Cam)DetectorState_RBV</pv_name>
+    <x>242</x>
+    <y>237</y>
+    <width>96</width>
+    <height>15</height>
+    <background_color>
+      <color red="0" green="255" blue="0">
+      </color>
+    </background_color>
+    <format>6</format>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_width>2</border_width>
+  </widget>
+</display>

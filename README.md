@@ -12,11 +12,11 @@ Scripts and configuration to install EPICS areaDetector with **ADTimePix3_mpx3**
     ADCore, ADSupport
     ADTimePix3_mpx3            MediPix3 development driver (kgofron fork)
 /epics/GUI/phoebus             Phoebus product install
-/epics/GUI/bob                 Simplified areaDetector main screens (this repo)
+/epics/GUI/bob                 Site screens (main/detectors.bob, ADet/R3-15/…)
 ```
 
 Detector-specific `.bob` screens ship with the driver under  
-`ADTimePix3_mpx3/tpx3App/op/bob/` (same pattern as upstream [ADTimePix3](https://github.com/areaDetector/ADTimePix3)).
+`ADTimePix3_mpx3/tpx3App/op/bob/` (including `MediPix3/MediPix3.bob`).
 
 ## Quick start (Erik's server)
 
@@ -32,7 +32,7 @@ After build:
 
 ```bash
 source /epics/epics-base/setEpicsEnv.sh   # or Erik: /data/epics/epics-base/setEpicsEnv.sh
-caget --version
+caget -V
 
 # Optional — add to every login shell:
 ./scripts/setup-epics-shell.sh
@@ -40,11 +40,13 @@ caget --version
 # Terminal 1 — start Serval (ASI), then IOC (default: st_mpx3.cmd)
 ./scripts/launch-ioc.sh
 
-# Terminal 2 — Phoebus (default: driver MediPix3.bob)
+# Terminal 2 — Phoebus (default: main/detectors.bob Camera launcher)
 ./scripts/launch-phoebus.sh
-# or: ./scripts/launch-phoebus.sh MediPix3.bob
-# or: ./scripts/launch-phoebus.sh TimePix3.bob
+# or: ./scripts/launch-phoebus.sh main/detectors.bob
+# or: ./scripts/launch-phoebus.sh MediPix3/MediPix3.bob
 ```
+
+Site screens under `bob/main/` and `bob/ADet/R3-15/` (ADCore master / pre-R3-15). Driver Expert panels stay in `ADTimePix3_mpx3/.../op/bob/`.
 
 See [docs/architecture.md](docs/architecture.md) for screen layering and a possible [ADViewers](https://github.com/areaDetector/ADViewers) contribution path. For manual install testing on Ubuntu 24.04, see [docs/testing/ubuntu-24.04.md](docs/testing/ubuntu-24.04.md).
 

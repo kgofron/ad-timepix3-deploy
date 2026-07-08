@@ -6,12 +6,13 @@
 org.phoebus.ui/adc_archives_list=
 org.phoebus.pv/default=ca
 
-# Display search path: site main screens, then driver screens, then ADCore common
+# Display search path: site bob (main + ADet/R3-15), then driver op/bob
 org.csstudio.display/factory_class=org.csstudio.display.builder.model.spi.ModelWidgetsFactory
 org.csstudio.display/convert_adl=true
 
 # Colon-separated list of directories (Phoebus 4.7+ uses org.csstudio.display/model/paths in some builds;
-# settings key may vary — verify in Phoebus Preferences after first launch)
+# settings key may vary — verify in Phoebus Preferences after first launch).
+# Order matters: Expert (AD detail) resolves TimePix3.bob / MediPix3/MediPix3.bob from driver path.
 org.csstudio.display/model/paths=@BOB_ROOT@:@ADTIMEPix3_BOB@
 
 # Default macro file optional

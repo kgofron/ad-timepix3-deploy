@@ -1,45 +1,54 @@
-# Simplified areaDetector Phoebus screens (site / ASI)
+# Phoebus screens (site / ASI lab)
 
-This directory holds a **minimal main-screen layer** — analogous to SNS  
-`/epics/GUI/SNS/bob/ADet/.../common` but stripped for a single-detector lab.
+Lab operator screens for **ADTimePix3 / MediPix3**. Driven by Phoebus `model/paths`
+(`BOB_ROOT` + driver `tpx3App/op/bob`).
 
-## Layering (target architecture)
+## Layout
 
 ```text
-┌─────────────────────────────────────────────────────────┐
-│  bob/main/TimePix3.bob     ← this repo (site / ADViewers) │
-│    embeds ADCore subscreens (collect, plugins, PVA)      │
-│    links to driver screens below                         │
-├─────────────────────────────────────────────────────────┤
-│  ADTimePix3_mpx3/tpx3App/op/bob/  ← detector repo        │
-│    MediPix3.bob, ConnectionStatus, Acquire/*, …        │
-├─────────────────────────────────────────────────────────┤
-│  ADCore/ADSupport (no bob) — templates referenced by path│
-└─────────────────────────────────────────────────────────┘
+bob/
+  main/
+    detectors.bob              ← Camera launcher (2 choices)
+  ADet/
+    R3-15/                     ← pin matching ADCore master / pre-R3-15
+      common/
+        color_camera_pva.bob   ← PVA operator view
+        subscreens/
+          _ad_view_controls.bob
+          _ad_view_image_pva*.bob
+        Images/                ← optional branding
 ```
 
-Upstream pattern today:
+```text
+detectors.bob
+  └─ Camera
+       ├─ ADTimePix3 PVA  → ADet/R3-15/common/color_camera_pva.bob
+       │     macros: Sys=TPX3-TEST  Dev=:  Cam=cam1: …
+       └─ ADMediPix3 PVA  → same screen
+             macros: Sys=MPX3-TEST  Dev=:  Cam=cam1: …
+                └─ Expert (AD detail)
+                     ├─ TimePix3.bob
+                     └─ MediPix3/MediPix3.bob   ← resolved via driver op/bob path
+```
 
-- **Detector repo** ships operator screens (`tpx3App/op/bob/` in [ADTimePix3](https://github.com/areaDetector/ADTimePix3)).
-- **Facility GUI** (SNS `bob/ADet/R3-11/...`) adds beamline-specific layout and ADCore embed paths.
+Effective PV prefix is **`$(Sys)$(Dev)`** (SNS convention), e.g. `MPX3-TEST:`.
 
-For Erik / ASI we only need the **main detector screen** plus ADCore collect/plugins — not the full SNS beamline tree.
+Driver tops stay in **`ADTimePix3_mpx3/tpx3App/op/bob/`** (not duplicated here).
 
-## ADViewers contribution?
+## Provenance
 
-[ADViewers](https://github.com/areaDetector/ADViewers) today hosts ImageJ, Python, and IDL viewers — not Phoebus `.bob` files. Options:
+`ADet/R3-15/common/*` started from SNS `/epics/GUI/SNS/bob/ADet/R3-11/common`
+and was adapted for this deploy (CORE_VER, Expert → `.bob` only, no facility menu).
+Screen tree name is **R3-15** to align with ADCore `master` (forthcoming R3-15 tag).
 
-1. **Add `Phoebus/` subtree to ADViewers** — generic `areaDetectorMain.bob` + README (preferred if areaDetector agrees).
-2. **Keep site screens here** — `asi-epics-phoebus` deploy repo only.
-3. **Upstream into ADTimePix3** — only detector-specific panels (already there); avoid duplicating ADCore embeds.
+## Launch
 
-Screens here should use **relative macros** (`pathADCore`, `pathDriver`) so they work on any install path.
+```bash
+./scripts/launch-phoebus.sh detectors.bob
+# or after site.env default: PHOEBUS_DEFAULT_SCREEN=main/detectors.bob
+```
 
 ## License
 
-Site Phoebus screens in this directory are part of [ad-timepix3-deploy](..) — MIT License, (c) UT-Battelle, LLC, Oak Ridge National Laboratory. See [LICENSE](../LICENSE).
-
-## Status
-
-Placeholder — simplified `TimePix3.bob` to be derived from  
-`/epics/GUI/SNS/bob/ADet/R3-11/ADTimePix3/R1-0/TimePix3.bob` with SNS-only paths removed.
+MIT — (c) UT-Battelle, LLC, Oak Ridge National Laboratory. See [LICENSE](../LICENSE).
+Screens adapted from SNS facility tree for lab use.

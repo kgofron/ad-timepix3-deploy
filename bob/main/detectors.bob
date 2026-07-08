@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ad-timepix3-deploy — lab detector launcher (slim SNS test.bob Cameras menu).
+  Opens ADet/R3-15/common/color_camera_pva.bob with Sys/Dev macros.
+  Effective PV prefix: $(Sys)$(Dev) → MPX3-TEST: or TPX3-TEST:
+  Author: K. Gofron (ORNL)
+  SPDX-License-Identifier: MIT
+-->
+<display version="2.0.0">
+  <name>Detectors</name>
+  <width>220</width>
+  <height>120</height>
+  <background_color>
+    <color red="240" green="240" blue="240">
+    </color>
+  </background_color>
+  <actions>
+  </actions>
+  <grid_step_x>6</grid_step_x>
+  <grid_step_y>6</grid_step_y>
+  <widget type="group" version="3.0.0">
+    <name>ASI / lab</name>
+    <x>10</x>
+    <y>10</y>
+    <width>200</width>
+    <height>100</height>
+    <style>1</style>
+    <foreground_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </foreground_color>
+    <line_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </line_color>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <actions>
+    </actions>
+    <widget type="action_button" version="3.0.0">
+      <name>Cameras</name>
+      <actions>
+        <action type="open_display">
+          <description>ADTimePix3 PVA</description>
+          <file>../ADet/R3-15/common/color_camera_pva.bob</file>
+          <macros>
+            <Dev>:</Dev>
+            <Sys>TPX3-TEST</Sys>
+            <Cam>cam1:</Cam>
+            <Image>image1:</Image>
+            <Pva>Pva1:</Pva>
+            <NAME>TPX3</NAME>
+            <C>TimePix</C>
+            <Title>TimePix3</Title>
+            <Stats>Stats1:</Stats>
+          </macros>
+          <target>tab</target>
+        </action>
+        <action type="open_display">
+          <description>ADMediPix3 PVA</description>
+          <file>../ADet/R3-15/common/color_camera_pva.bob</file>
+          <macros>
+            <Dev>:</Dev>
+            <Sys>MPX3-TEST</Sys>
+            <Cam>cam1:</Cam>
+            <Image>image1:</Image>
+            <Pva>Pva2:</Pva>
+            <NAME>MPX3</NAME>
+            <C>MediPix</C>
+            <Title>MediPix3</Title>
+            <Stats>Stats5:</Stats>
+          </macros>
+          <target>tab</target>
+        </action>
+      </actions>
+      <text>Camera</text>
+      <x>25</x>
+      <y>30</y>
+      <width>150</width>
+      <height>35</height>
+      <background_color>
+        <color red="240" green="240" blue="240">
+        </color>
+      </background_color>
+      <tooltip>Open PVA viewer with Sys/Dev prefix for TimePix3 or MediPix3</tooltip>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+  </widget>
+</display>

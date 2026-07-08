@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ad-timepix3-deploy lab screen: ADet/R3-15 (adapted from SNS ADet/R3-11).
+     Macros: Sys Dev Cam Image Stats Pva. Effective P=$(Sys)$(Dev).
+     Expert opens driver TimePix3.bob / MediPix3/MediPix3.bob via Phoebus model paths. -->
+<!--Saved on 2024-05-21 13:41:44 by kg1-->
+<display version="2.0.0">
+  <name>$(NAME)</name>
+  <macros>
+    <CORE_VER>R3-15</CORE_VER>
+    <Cam>cam1:</Cam>
+    <Image>image1:</Image>
+    <Proc>Proc1:</Proc>
+    <Pva>Pva1:</Pva>
+    <Trans>Trans1:</Trans>
+    <Stats>Stats1:</Stats>
+    <ProfileStats>Stats1:</ProfileStats>
+    <pathADet>.</pathADet>
+  </macros>
+  <width>2365</width>
+  <height>1297</height>
+  <background_color>
+    <color red="240" green="240" blue="240">
+    </color>
+  </background_color>
+  <actions>
+  </actions>
+  <grid_step_x>6</grid_step_x>
+  <grid_step_y>6</grid_step_y>
+  <widget type="rectangle" version="2.0.0">
+    <name>Rectangle</name>
+    <x>275</x>
+    <width>1930</width>
+    <height>50</height>
+    <line_color>
+      <color red="77" green="128" blue="77">
+      </color>
+    </line_color>
+    <background_color>
+      <color red="77" green="128" blue="77">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="picture" version="2.0.0">
+    <name>Image</name>
+    <file>Images/SNS.png</file>
+    <width>270</width>
+    <height>50</height>
+    <stretch_image>true</stretch_image>
+    <actions>
+    </actions>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Display Controls</name>
+    <x>858</x>
+    <y>1080</y>
+    <width>360</width>
+    <height>210</height>
+    <visible>false</visible>
+    <style>1</style>
+    <foreground_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </foreground_color>
+    <line_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </line_color>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <actions>
+    </actions>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Transform / Process</name>
+    <x>1605</x>
+    <y>1072</y>
+    <width>360</width>
+    <height>225</height>
+    <visible>false</visible>
+    <style>1</style>
+    <foreground_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </foreground_color>
+    <line_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </line_color>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <actions>
+    </actions>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Input_1</name>
+      <pv_name>$(Sys)$(Dev)$(Proc)NumFilter</pv_name>
+      <x>130</x>
+      <y>170</y>
+      <width>89</width>
+      <height>25</height>
+      <background_color>
+        <color red="255" green="255" blue="255">
+        </color>
+      </background_color>
+      <horizontal_alignment>1</horizontal_alignment>
+      <actions>
+      </actions>
+      <rules>
+        <rule name="Lock Rule" prop_id="enabled" out_exp="false">
+          <exp bool_exp="pv0 != 1">
+            <value>false</value>
+          </exp>
+          <pv_name>loc://lock_camera_control</pv_name>
+        </rule>
+      </rules>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label</name>
+      <text>Transform Type</text>
+      <x>6</x>
+      <y>15</y>
+      <width>120</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_1</name>
+      <pv_name>$(Sys)$(Dev)$(Proc)NumFilter_RBV</pv_name>
+      <x>232</x>
+      <y>172</y>
+      <width>96</width>
+      <height>21</height>
+      <background_color>
+        <color red="255" green="255" blue="255">
+        </color>
+      </background_color>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+      <actions>
+      </actions>
+      <border_width>2</border_width>
+      <border_color>
+        <color name="S_ind" red="0" green="177" blue="0">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo</name>
+      <pv_name>$(Sys)$(Dev)$(Trans)Type</pv_name>
+      <x>135</x>
+      <y>5</y>
+      <width>196</width>
+      <height>38</height>
+      <background_color>
+        <color red="255" green="255" blue="255">
+        </color>
+      </background_color>
+      <actions>
+      </actions>
+      <rules>
+        <rule name="Lock Rule" prop_id="enabled" out_exp="false">
+          <exp bool_exp="pv0 != 1">
+            <value>false</value>
+          </exp>
+          <pv_name>loc://lock_camera_control</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_3</name>
+      <text>Process Type</text>
+      <x>5</x>
+      <y>105</y>
+      <width>120</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_3</name>
+      <text>Process Num</text>
+      <x>5</x>
+      <y>175</y>
+      <width>110</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_1</name>
+      <pv_name>$(Sys)$(Dev)$(Proc)FilterType</pv_name>
+      <x>135</x>
+      <y>90</y>
+      <width>196</width>
+      <height>38</height>
+      <background_color>
+        <color red="255" green="255" blue="255">
+        </color>
+      </background_color>
+      <actions>
+      </actions>
+      <rules>
+        <rule name="Lock Rule" prop_id="enabled" out_exp="false">
+          <exp bool_exp="pv0 != 1">
+            <value>false</value>
+          </exp>
+          <pv_name>loc://lock_camera_control</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_3</name>
+      <text>Process Enabled</text>
+      <x>6</x>
+      <y>140</y>
+      <width>120</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_1</name>
+      <pv_name>$(Sys)$(Dev)$(Proc)EnableFilter</pv_name>
+      <x>130</x>
+      <y>130</y>
+      <width>90</width>
+      <height>38</height>
+      <background_color>
+        <color red="255" green="255" blue="255">
+        </color>
+      </background_color>
+      <actions>
+      </actions>
+      <rules>
+        <rule name="Lock Rule" prop_id="enabled" out_exp="false">
+          <exp bool_exp="pv0 != 1">
+            <value>false</value>
+          </exp>
+          <pv_name>loc://lock_camera_control</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_3</name>
+      <pv_name>$(Sys)$(Dev)$(Proc)EnableFilter_RBV</pv_name>
+      <x>232</x>
+      <y>142</y>
+      <width>96</width>
+      <height>21</height>
+      <background_color>
+        <color red="255" green="255" blue="255">
+        </color>
+      </background_color>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+      <actions>
+      </actions>
+      <border_width>2</border_width>
+      <border_color>
+        <color name="S_ind" red="0" green="177" blue="0">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_1</name>
+      <text>Bkgd Enabled</text>
+      <x>7</x>
+      <y>60</y>
+      <width>120</width>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo_1</name>
+      <pv_name>$(Sys)$(Dev)$(Proc)EnableBackground</pv_name>
+      <x>131</x>
+      <y>50</y>
+      <width>90</width>
+      <height>38</height>
+      <background_color>
+        <color red="255" green="255" blue="255">
+        </color>
+      </background_color>
+      <actions>
+      </actions>
+      <rules>
+        <rule name="Lock Rule" prop_id="enabled" out_exp="false">
+          <exp bool_exp="pv0 != 1">
+            <value>false</value>
+          </exp>
+          <pv_name>loc://lock_camera_control</pv_name>
+        </rule>
+      </rules>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_3</name>
+      <pv_name>$(Sys)$(Dev)$(Proc)EnableBackground_RBV</pv_name>
+      <x>233</x>
+      <y>62</y>
+      <width>96</width>
+      <height>21</height>
+      <background_color>
+        <color red="255" green="255" blue="255">
+        </color>
+      </background_color>
+      <horizontal_alignment>1</horizontal_alignment>
+      <vertical_alignment>1</vertical_alignment>
+      <wrap_words>false</wrap_words>
+      <actions>
+      </actions>
+      <border_width>2</border_width>
+      <border_color>
+        <color name="S_ind" red="0" green="177" blue="0">
+        </color>
+      </border_color>
+    </widget>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_3</name>
+    <text>$(Title)</text>
+    <x>275</x>
+    <y>6</y>
+    <width>1651</width>
+    <height>37</height>
+    <font>
+      <font family="Sans" style="BOLD" size="21.782178217821784">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="slide_button" version="2.0.0">
+    <name>Boolean Switch</name>
+    <pv_name>loc://lock_camera_control</pv_name>
+    <bit>-1</bit>
+    <x>1209</x>
+    <y>864</y>
+    <width>41</width>
+    <height>65</height>
+    <off_color>
+      <color red="0" green="100" blue="0">
+      </color>
+    </off_color>
+    <actions>
+    </actions>
+    <confirm_message>Are you sure you want to do this?</confirm_message>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Histogram</name>
+    <visible>false</visible>
+    <x>1605</x>
+    <y>573</y>
+    <width>760</width>
+    <height>460</height>
+    <style>1</style>
+    <widget type="embedded" version="2.0.0">
+      <name>Histogram_Content</name>
+      <file>subscreens/_ad_view_histogram.opi</file>
+      <!-- lab R3-15: file not shipped; embed left for SNS parity -->
+      <width>758</width>
+      <height>440</height>
+      <resize>1</resize>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Image</name>
+    <x>34</x>
+    <y>72</y>
+    <width>1177</width>
+    <height>961</height>
+    <style>1</style>
+    <widget type="embedded" version="2.0.0">
+      <name>Image_Content</name>
+      <file>subscreens/_ad_view_image_pva_profiles.bob</file>
+      <width>1176</width>
+      <height>942</height>
+      <resize>4</resize>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Detector Controls</name>
+    <x>1227</x>
+    <y>72</y>
+    <width>360</width>
+    <height>520</height>
+    <style>1</style>
+    <widget type="embedded" version="2.0.0">
+      <name>Detector Controls_Content</name>
+      <file>subscreens/_ad_view_controls.bob</file>
+      <width>358</width>
+      <height>500</height>
+      <resize>1</resize>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Intensity</name>
+    <visible>false</visible>
+    <x>1605</x>
+    <y>72</y>
+    <width>760</width>
+    <height>492</height>
+    <style>1</style>
+    <widget type="embedded" version="2.0.0">
+      <name>Intensity_Content</name>
+      <file>subscreens/_ad_view_intensity.opi</file>
+      <!-- lab R3-15: file not shipped; embed left for SNS parity -->
+      <width>758</width>
+      <height>472</height>
+      <resize>1</resize>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Display Controls_1</name>
+    <visible>false</visible>
+    <x>1227</x>
+    <y>591</y>
+    <width>360</width>
+    <height>210</height>
+    <style>1</style>
+    <widget type="embedded" version="2.0.0">
+      <name>Display Controls_1_Content</name>
+      <file>subscreens/_ad_view_displaycontrols.opi</file>
+      <!-- lab R3-15: file not shipped; embed left for SNS parity -->
+      <width>358</width>
+      <height>190</height>
+      <resize>4</resize>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Transform/Process</name>
+    <visible>false</visible>
+    <x>1227</x>
+    <y>800</y>
+    <width>360</width>
+    <height>290</height>
+    <style>1</style>
+    <widget type="embedded" version="2.0.0">
+      <name>Transform/Process_Content</name>
+      <file>subscreens/_ad_view_transproc.opi</file>
+      <!-- lab R3-15: file not shipped; embed left for SNS parity -->
+      <width>358</width>
+      <height>270</height>
+      <resize>4</resize>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+  </widget>
+</display>

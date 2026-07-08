@@ -47,7 +47,7 @@ Edit `config/site.env` if needed:
 | `SERVER_URL` | `http://localhost:8081` | Serval host/port on this machine |
 | `IOC_PREFIX` | `MPX3-TEST:` | Must match `PREFIX` in `st_mpx3.cmd` / `unique_mpx3.cmd` (reference for docs; edit driver startup to change PVs) |
 | `IOC_STARTUP` | `st_mpx3.cmd` | `st.cmd` for TimePix3-only profile |
-| `PHOEBUS_DEFAULT_SCREEN` | `MediPix3.bob` | Driver screen under `tpx3App/op/bob/` |
+| `PHOEBUS_DEFAULT_SCREEN` | `main/detectors.bob` | Lab Camera launcher; or `MediPix3/MediPix3.bob` |
 | `PHOEBUS_SOURCE` | `sns` | `github` off-site (no SNS VPN) |
 | `MAKE_JOBS` | empty (= all CPUs) | Set e.g. `8` if you want to leave headroom |
 | `GIT_DEPTH` | `1` | Set `0` if a `checkout_tag` step fails |
@@ -132,6 +132,7 @@ In another terminal:
 
 ```bash
 source /epics/epics-base/setEpicsEnv.sh
+caget -V
 caget MPX3-TEST:cam1:StatusMessage   # prefix from st_mpx3.cmd / unique_mpx3.cmd
 ```
 
@@ -149,19 +150,26 @@ If `SERVER_URL` is not in `st_base.cmd` yet, edit it under:
 
 ## Step 6 — Test Phoebus
 
-Driver screens live under `ADTimePix3_mpx3/tpx3App/op/bob/`. Site `bob/main/` is still a placeholder.
+Site launcher and PVA common screens: `bob/main/detectors.bob`, `bob/ADet/R3-15/`.  
+Driver Expert screens: `ADTimePix3_mpx3/tpx3App/op/bob/` (e.g. `MediPix3/MediPix3.bob`).
 
 ```bash
-# List available screens
-ls /epics/support/areaDetector/ADTimePix3_mpx3/tpx3App/op/bob/
+# List site + driver screens
+ls /epics/GUI/bob/main/
+ls /epics/GUI/bob/ADet/R3-15/common/
+ls /epics/support/areaDetector/ADTimePix3_mpx3/tpx3App/op/bob/MediPix3/
 
-# Launch Phoebus (needs DISPLAY / X11 or VNC) — default from site.env: MediPix3.bob
+# Launch Phoebus (needs DISPLAY / X11 or VNC) — default: main/detectors.bob
 cd /home/kg1/src/github/ad-timepix3-deploy
 ./scripts/launch-phoebus.sh
-# or explicitly:
-./scripts/launch-phoebus.sh MediPix3.bob
-./scripts/launch-phoebus.sh TimePix3.bob
+# Camera → ADMediPix3 PVA sets Sys=MPX3-TEST Dev=: (no manual P/R)
+# Expert (AD detail) → MediPix3/MediPix3.bob
+#
+# Or open driver screen directly:
+./scripts/launch-phoebus.sh MediPix3/MediPix3.bob
 ```
+
+Check versions with `caget -V` (not `caget --version`).
 
 On a headless server:
 

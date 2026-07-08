@@ -24,9 +24,10 @@ resolve_phoebus_screen() {
   fi
 
   for candidate in \
-    "${ADTIMEPix3_HOME}/tpx3App/op/bob/${screen}" \
     "${BOB_ROOT}/${screen}" \
-    "${BOB_ROOT}/main/${screen}"
+    "${BOB_ROOT}/main/${screen}" \
+    "${ADTIMEPix3_HOME}/tpx3App/op/bob/${screen}" \
+    "${ADTIMEPix3_HOME}/tpx3App/op/bob/MediPix3/${screen}"
   do
     if [[ -f "${candidate}" ]]; then
       echo "${candidate}"
@@ -35,9 +36,11 @@ resolve_phoebus_screen() {
   done
 
   echo "Phoebus screen not found: ${screen}" >&2
-  echo "  ${ADTIMEPix3_HOME}/tpx3App/op/bob/" >&2
   echo "  ${BOB_ROOT}/" >&2
+  echo "  ${ADTIMEPix3_HOME}/tpx3App/op/bob/" >&2
+  ls -1 "${BOB_ROOT}/main/"*.bob 2>/dev/null | head -5 >&2 || true
   ls -1 "${ADTIMEPix3_HOME}/tpx3App/op/bob/"*.bob 2>/dev/null | head -5 >&2 || true
+  ls -1 "${ADTIMEPix3_HOME}/tpx3App/op/bob/MediPix3/"*.bob 2>/dev/null | head -5 >&2 || true
   exit 1
 }
 

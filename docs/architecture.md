@@ -40,8 +40,9 @@ Requires **Java 11+** for `github` source (OpenJDK 17 on Ubuntu 24.04).
 
 Display path order:
 
-1. `bob/main/` — simplified main screen (this repo)
-2. `ADTimePix3_mpx3/tpx3App/op/bob/` — detector panels
+1. `bob/main/detectors.bob` — Camera launcher (`Sys`/`Dev` → `MPX3-TEST:` / `TPX3-TEST:`)
+2. `bob/ADet/R3-15/common/` — PVA viewer (pinned to ADCore master / pre-R3-15)
+3. `ADTimePix3_mpx3/tpx3App/op/bob/` — driver Expert panels (`TimePix3.bob`, `MediPix3/MediPix3.bob`)
 
 ## IOC
 
@@ -60,9 +61,10 @@ ORNL SNS screens live under `/epics/GUI/SNS/bob/ADet/R3-11/`. They reference:
 - `pathADet` → facility `bob/main` (beamline navigation)
 - `pathADCore` → versioned ADCore OPI embeds
 
-ASI deployment **drops facility navigation** and keeps:
+This deploy vendors a **minimum** common set under `bob/ADet/R3-15/` (name tracks ADCore master ≈ R3-15), adapted from SNS R3-11:
 
-- `TimePix3.bob` or `MediPix3.bob` as top screen
-- `ConnectionStatus.bob`, `ADSetup.bob`, `Acquire/ADCollect.bob` from driver tree
+- `main/detectors.bob` — Camera menu only (TimePix / MediPix PVA)
+- `common/color_camera_pva.bob` + `_ad_view_*` — operator PVA view
+- Expert → driver `TimePix3.bob` / `MediPix3/MediPix3.bob` (not a full SNS facility copy)
 
-That split mirrors how areaDetector intends detector-specific OPIs in each driver repo vs shared ADCore templates.
+ASI deployment **drops** Logbook/Archiver/Motion and facility `pathADet` absolute paths.
