@@ -8,7 +8,8 @@ Not a full SNS facility `ADet/R3-11` tree. Includes operator `common/` plus Expe
 |------|------|
 | `common/color_camera_pva.bob` | PVA preview + acquire embeds |
 | `common/subscreens/_ad_view_controls.bob` | Acquire; Expert → `ADTimePix3/R1-0/...` |
-| `common/subscreens/_ad_view_image_pva*.bob` | Image / profile widgets |
+| `common/subscreens/_ad_view_*.bob` | Image / profile widgets |
+| `common/subscreens/_ad_view_*.opi` | Intensity, histogram, display, process (SNS donor) |
 | `ADCore/R3-15/*.bob` | areaDetector screens from built ADCore `autoconvert` (install sync) |
 | `ADTimePix3/R1-0/` | Expert tops + driver embeds (synced by `05-install-phoebus.sh`) |
 

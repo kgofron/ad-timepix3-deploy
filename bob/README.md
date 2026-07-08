@@ -18,6 +18,10 @@ bob/
         subscreens/
           _ad_view_controls.bob
           _ad_view_image_pva*.bob
+          _ad_view_histogram.opi
+          _ad_view_intensity.opi
+          _ad_view_displaycontrols.opi
+          _ad_view_transproc.opi
         Images/                ← optional branding
 ```
 

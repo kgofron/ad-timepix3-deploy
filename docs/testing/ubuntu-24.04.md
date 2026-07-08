@@ -160,12 +160,13 @@ ls /epics/GUI/bob/ADet/R3-15/common/subscreens/
 ls /epics/GUI/bob/ADet/R3-15/ADCore/R3-15/ADShutter.bob
 ls /epics/GUI/bob/ADet/R3-15/ADTimePix3/R1-0/MediPix3/MediPix3.bob
 ls /epics/GUI/bob/ADet/R3-15/ADTimePix3/R1-0/ADSetup.bob   # synced from driver
+ls /epics/GUI/bob/ADet/R3-15/common/subscreens/_ad_view_histogram.opi
 
 # Launch Phoebus (needs DISPLAY / X11 or VNC) — default: main/detectors.bob
 cd ~/Documents/src/github/ad-timepix3-deploy   # or your clone path
 ./scripts/05-install-phoebus.sh              # after git pull — rsyncs bob + driver embeds
 ./scripts/launch-phoebus.sh
-# Camera → ADMediPix3 PVA sets Sys=MPX3-TEST Dev=: (no manual P/R)
+# Camera → ADMediPix3 PVA or ADTimePix3 PVA — full operator view (histogram, intensity, ROI, process)
 # Expert (AD detail) → ADet/R3-15/ADTimePix3/R1-0/MediPix3/MediPix3.bob
 ```
 

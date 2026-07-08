@@ -11,7 +11,7 @@ Detailed history: `git log`.
 - `05-install-phoebus.sh`: rsync driver bob embeds; refresh `settings.ini` model paths
 - Phoebus lab tree: `bob/main/detectors.bob` + `bob/ADet/R3-15/common` (from SNS R3-11, retargeted)
 - Default launch screen `main/detectors.bob`
-- Document `caget -V` and MediPix3 subdirectory path
+- Unhide PVA operator embeds: histogram, intensity, display controls, transform/process
 
 ## 2026-07 — MediPix3 site deploy (ORNL / ASI)
 

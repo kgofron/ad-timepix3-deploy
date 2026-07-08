@@ -414,7 +414,6 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Histogram</name>
-    <visible>false</visible>
     <x>1605</x>
     <y>573</y>
     <width>760</width>
@@ -423,7 +422,6 @@
     <widget type="embedded" version="2.0.0">
       <name>Histogram_Content</name>
       <file>subscreens/_ad_view_histogram.opi</file>
-      <!-- lab R3-15: file not shipped; embed left for SNS parity -->
       <width>758</width>
       <height>440</height>
       <resize>1</resize>
@@ -479,7 +477,6 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Intensity</name>
-    <visible>false</visible>
     <x>1605</x>
     <y>72</y>
     <width>760</width>
@@ -488,7 +485,6 @@
     <widget type="embedded" version="2.0.0">
       <name>Intensity_Content</name>
       <file>subscreens/_ad_view_intensity.opi</file>
-      <!-- lab R3-15: file not shipped; embed left for SNS parity -->
       <width>758</width>
       <height>472</height>
       <resize>1</resize>
@@ -502,7 +498,6 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Display Controls_1</name>
-    <visible>false</visible>
     <x>1227</x>
     <y>591</y>
     <width>360</width>
@@ -511,7 +506,6 @@
     <widget type="embedded" version="2.0.0">
       <name>Display Controls_1_Content</name>
       <file>subscreens/_ad_view_displaycontrols.opi</file>
-      <!-- lab R3-15: file not shipped; embed left for SNS parity -->
       <width>358</width>
       <height>190</height>
       <resize>4</resize>
@@ -525,7 +519,6 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Transform/Process</name>
-    <visible>false</visible>
     <x>1227</x>
     <y>800</y>
     <width>360</width>
@@ -534,7 +527,6 @@
     <widget type="embedded" version="2.0.0">
       <name>Transform/Process_Content</name>
       <file>subscreens/_ad_view_transproc.opi</file>
-      <!-- lab R3-15: file not shipped; embed left for SNS parity -->
       <width>358</width>
       <height>270</height>
       <resize>4</resize>
