@@ -5,13 +5,24 @@ Detailed history: `git log`.
 
 ## Unreleased
 
-- ADCore Phoebus: sync `ADApp/op/bob/autoconvert` → `bob/ADet/R3-15/ADCore/R3-15/` (not vendored SNS `.opi`)
-- Vendor `bob/ADet/R3-15/ADCore/R3-15/` install path for Expert embeds
-- Expert tops under `bob/ADet/R3-15/ADTimePix3/R1-0/`; fix `open_display` relative paths
-- `05-install-phoebus.sh`: rsync driver bob embeds; refresh `settings.ini` model paths
-- Phoebus lab tree: `bob/main/detectors.bob` + `bob/ADet/R3-15/common` (from SNS R3-11, retargeted)
-- Default launch screen `main/detectors.bob`
-- Unhide PVA operator embeds: histogram, intensity, display controls, transform/process
+## 2026-07 — Phoebus operator screens (v0.1.1)
+
+Tested on LAP142249 with live MediPix3 acquire (histogram, intensity, Expert panels).
+
+### Lab launcher and PVA view
+- `bob/main/detectors.bob` — Camera menu for ADTimePix3 / ADMediPix3 PVA (`Sys`/`Dev` macros)
+- `bob/ADet/R3-15/common/color_camera_pva.bob` + `_ad_view_*` subscreens (adapted from SNS R3-11)
+- Default launch screen: `main/detectors.bob`
+- Full PVA operator embeds: histogram, intensity, display controls (ROI/autoscale), transform/process
+
+### Expert (AD detail)
+- Expert tops under `bob/ADet/R3-15/ADTimePix3/R1-0/` (SNS-style relative paths from `subscreens/`)
+- ADCore `.bob` screens synced from built checkout `ADApp/op/bob/autoconvert` → `ADCore/R3-15/` (not vendored SNS `.opi`)
+- Driver support panels (`ADSetup`, `Acquire/`, `Detector/`, …) rsynced at install from `ADTimePix3_mpx3/tpx3App/op/bob`
+
+### Install / launch
+- `05-install-phoebus.sh`: ADCore bob sync, driver embed sync, refresh `settings.ini` model paths
+- `launch-phoebus.sh`: resolve Expert screens from site bob tree before driver copy
 
 ## 2026-07 — MediPix3 site deploy (ORNL / ASI)
 
