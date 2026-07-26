@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- PVA image + NDStats cursor profiles (replaces CSS loc:// hpx/hpy/vpx/vpy).
+<!-- PVA image + NDStats cursor profiles (AD top-left / Y-down via axis min/max flip).
      Macros: Sys, Dev, Pva, Stats, ProfileStats, DID (from parent).
-     Requires NDStatsProfiles.db loaded in IOC; ProfileStats:ComputeProfiles enabled. -->
+     Requires NDStatsProfiles.db; axes are $(ProfileStats)Cal:*.AVAL. -->
 <display version="2.0.0">
+  <width>1170</width>
+  <height>930</height>
   <background_color>
     <color red="240" green="240" blue="240">
     </color>
@@ -14,7 +16,7 @@
   <widget type="xyplot" version="3.0.0">
     <name>VerticalProfile</name>
     <width>160</width>
-    <height>750</height>
+    <height>745</height>
     <title_font>
       <font family="Arial" style="BOLD" size="11.881188118811881">
       </font>
@@ -22,6 +24,22 @@
     <show_legend>false</show_legend>
     <actions>
     </actions>
+    <rules>
+      <rule name="YMin" prop_id="y_axes[0].minimum" out_exp="true">
+        <exp bool_exp="pvInt2==0">
+          <expression>pvInt0</expression>
+        </exp>
+        <exp bool_exp="pvInt2==1">
+          <expression>pvInt0</expression>
+        </exp>
+        <exp bool_exp="pvInt2==2">
+          <expression>pvInt1</expression>
+        </exp>
+        <pv_name>$(Sys)$(Dev)$(Pva)ArraySize1_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Pva)ArraySize2_RBV</pv_name>
+        <pv_name>$(Sys)$(Dev)$(Pva)ColorMode_RBV</pv_name>
+      </rule>
+    </rules>
     <x_axis>
       <title></title>
       <autoscale>true</autoscale>
@@ -42,10 +60,10 @@
     <y_axes>
       <y_axis>
         <title>Pixels</title>
-        <autoscale>true</autoscale>
+        <autoscale>false</autoscale>
         <log_scale>false</log_scale>
-        <minimum>0.0</minimum>
-        <maximum>100.0</maximum>
+        <minimum>512.0</minimum>
+        <maximum>0.0</maximum>
         <show_grid>true</show_grid>
         <title_font>
           <font family="Arial" style="BOLD" size="8.910891089108912">
@@ -67,7 +85,7 @@
       <trace>
         <name>Column profile</name>
         <x_pv>$(Sys)$(Dev)$(ProfileStats)ProfileCursorY_RBV</x_pv>
-        <y_pv>$(Sys)$(Dev)Cal:ySelAxisM</y_pv>
+        <y_pv>$(Sys)$(Dev)$(ProfileStats)Cal:ySelAxisM.AVAL</y_pv>
         <err_pv></err_pv>
         <axis>0</axis>
         <trace_type>1</trace_type>
@@ -85,9 +103,9 @@
   </widget>
   <widget type="xyplot" version="3.0.0">
     <name>HorizontalProfile</name>
-    <x>159</x>
-    <y>756</y>
-    <width>1000</width>
+    <x>152</x>
+    <y>745</y>
+    <width>970</width>
     <height>160</height>
     <title_font>
       <font family="Arial" style="BOLD" size="11.881188118811881">
@@ -140,7 +158,7 @@
     <traces>
       <trace>
         <name>Row profile</name>
-        <x_pv>$(Sys)$(Dev)Cal:xSelAxisM</x_pv>
+        <x_pv>$(Sys)$(Dev)$(ProfileStats)Cal:xSelAxisM.AVAL</x_pv>
         <y_pv>$(Sys)$(Dev)$(ProfileStats)ProfileCursorX_RBV</y_pv>
         <err_pv></err_pv>
         <axis>0</axis>
@@ -160,8 +178,8 @@
   <widget type="image" version="2.0.0">
     <name>Intensity Graph</name>
     <pv_name>pva://$(Sys)$(Dev)$(Pva)Image</pv_name>
-    <x>159</x>
-    <width>991</width>
+    <x>160</x>
+    <width>1000</width>
     <height>745</height>
     <background_color>
       <color name="Transparent" red="255" green="255" blue="255" alpha="0">
@@ -184,8 +202,8 @@
     <y_axis>
       <visible>true</visible>
       <title></title>
-      <minimum>0.0</minimum>
-      <maximum>100.0</maximum>
+      <minimum>512.0</minimum>
+      <maximum>0.0</maximum>
       <title_font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
@@ -195,9 +213,6 @@
         </font>
       </scale_font>
     </y_axis>
-    <x_pv>$(Sys)$(Dev)$(ProfileStats)CursorX</x_pv>
-    <y_pv>$(Sys)$(Dev)$(ProfileStats)CursorY</y_pv>
-    <cursor_crosshair>true</cursor_crosshair>
     <actions>
     </actions>
     <rules>
@@ -243,7 +258,7 @@
         <pv_name>$(Sys)$(Dev)$(Pva)ArraySize1_RBV</pv_name>
         <pv_name>$(Sys)$(Dev)$(Pva)ColorMode_RBV</pv_name>
       </rule>
-      <rule name="Y Scale" prop_id="y_axis.maximum" out_exp="true">
+      <rule name="Y Scale" prop_id="y_axis.minimum" out_exp="true">
         <exp bool_exp="pvInt2==0">
           <expression>pvInt0</expression>
         </exp>
@@ -339,5 +354,8 @@
     <data_height>0</data_height>
     <autoscale>false</autoscale>
     <maximum>65000.0</maximum>
+    <x_pv>$(Sys)$(Dev)$(ProfileStats)CursorX</x_pv>
+    <y_pv>$(Sys)$(Dev)$(ProfileStats)CursorY</y_pv>
+    <cursor_crosshair>true</cursor_crosshair>
   </widget>
 </display>

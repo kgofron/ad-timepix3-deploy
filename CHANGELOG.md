@@ -5,6 +5,8 @@ Detailed history: `git log`.
 
 ## Unreleased
 
+- Sync `_ad_view_image_pva_profiles.bob` from SNS: `$(ProfileStats)Cal:*.AVAL` axes, AD top-left Y-down (aligns with [ADCore #600](https://github.com/areaDetector/ADCore/pull/600); IOC db/ioc not vendored here)
+
 ## 2026-07 — Phoebus operator screens (v0.1.1)
 
 Tested on LAP142249 with live MediPix3 acquire (histogram, intensity, Expert panels).
