@@ -6,6 +6,7 @@ Detailed history: `git log`.
 ## Unreleased
 
 - Sync `_ad_view_image_pva_profiles.bob` from SNS: `$(ProfileStats)Cal:*.AVAL` axes, AD top-left Y-down (aligns with [ADCore #600](https://github.com/areaDetector/ADCore/pull/600); IOC db/ioc not vendored here)
+- ADCore iocBoot: seed/install `NDStatsProfiles.template` + `EXAMPLE_stats_profiles.cmd` → `stats_profiles.cmd` (bridge until #600 merges; used by driver `st_mpx3.cmd`)
 
 ## 2026-07 — Phoebus operator screens (v0.1.1)
 

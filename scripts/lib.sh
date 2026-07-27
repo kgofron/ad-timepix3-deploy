@@ -274,6 +274,60 @@ install_adcore_ioc_boot_files() {
       echo "Copied ${src_name} -> ${dst_name} under ${ioc_boot}"
     fi
   done
+
+  install_adcore_stats_profiles
+}
+
+# NDStatsProfiles for Phoebus row/column plots ([ADCore #600](https://github.com/areaDetector/ADCore/pull/600)).
+# Bridge until merged upstream: seed EXAMPLE + template from this repo if ADCore lacks them,
+# then EXAMPLE_stats_profiles.cmd → stats_profiles.cmd (same pattern as commonPlugins.cmd).
+install_adcore_stats_profiles() {
+  local adcore="${AREA_DETECTOR}/ADCore"
+  local ioc_boot="${adcore}/iocBoot"
+  local db_src="${adcore}/ADApp/Db"
+  local db_inst="${adcore}/db"
+  local vendor_tpl="${REPO_ROOT}/config/areaDetector/NDStatsProfiles.template"
+  local vendor_ex="${REPO_ROOT}/config/areaDetector/EXAMPLE_stats_profiles.cmd"
+  local example="${ioc_boot}/EXAMPLE_stats_profiles.cmd"
+  local site_cmd="${ioc_boot}/stats_profiles.cmd"
+
+  if [[ ! -f "${db_src}/NDStatsProfiles.template" ]]; then
+    if [[ ! -f "${vendor_tpl}" ]]; then
+      echo "WARN: ${vendor_tpl} missing — cannot seed NDStatsProfiles.template" >&2
+      return 0
+    fi
+    cp "${vendor_tpl}" "${db_src}/NDStatsProfiles.template"
+    echo "Seeded ${db_src}/NDStatsProfiles.template (until ADCore #600 merges)"
+  fi
+
+  mkdir -p "${db_inst}"
+  if [[ ! -f "${db_inst}/NDStatsProfiles.template" ]]; then
+    cp "${db_src}/NDStatsProfiles.template" "${db_inst}/NDStatsProfiles.template"
+    echo "Installed ${db_inst}/NDStatsProfiles.template"
+  fi
+
+  if [[ ! -f "${example}" ]]; then
+    if [[ ! -f "${vendor_ex}" ]]; then
+      echo "WARN: ${vendor_ex} missing — cannot seed EXAMPLE_stats_profiles.cmd" >&2
+      return 0
+    fi
+    cp "${vendor_ex}" "${example}"
+    echo "Seeded ${example} (until ADCore #600 merges)"
+  fi
+
+  if [[ -f "${site_cmd}" ]]; then
+    echo "Keeping existing ${site_cmd}"
+  else
+    cp "${example}" "${site_cmd}"
+    echo "Copied EXAMPLE_stats_profiles.cmd -> stats_profiles.cmd under ${ioc_boot}"
+  fi
+
+  # Site copy should be gitignored like commonPlugins.cmd (ADCore PR follow-up may add this).
+  local gi="${ioc_boot}/.gitignore"
+  if [[ -f "${gi}" ]] && ! grep -qx 'stats_profiles.cmd' "${gi}"; then
+    echo 'stats_profiles.cmd' >> "${gi}"
+    echo "Appended stats_profiles.cmd to ${gi}"
+  fi
 }
 
 # ADCore Phoebus screens: bob/autoconvert from the built checkout (ADCORE_TAG / master ≈ R3-15).

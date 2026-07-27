@@ -167,7 +167,10 @@ cd ~/Documents/src/github/ad-timepix3-deploy   # or your clone path
 ./scripts/05-install-phoebus.sh              # after git pull — rsyncs bob + driver embeds
 ./scripts/launch-phoebus.sh
 # Camera → ADMediPix3 PVA or ADTimePix3 PVA — full operator view (histogram, intensity, ROI, process)
-# Row/column profiles need NDStatsProfiles under $(P)$(R) (ADCore #600 EXAMPLE_stats_profiles.cmd when merged)
+# Row/column profiles need NDStatsProfiles under $(P)$(R) — step 03 installs
+# $(ADCORE)/iocBoot/stats_profiles.cmd (+ template); st_mpx3.cmd already includes it.
+# After iocInit once: dbpf "$(PREFIX)Stats1:StatsProfInit_.PROC" 1
+# (or wait for ADCore #600 upstream instead of the deploy bridge)
 # Expert (AD detail) → ADet/R3-15/ADTimePix3/R1-0/MediPix3/MediPix3.bob
 ```
 
@@ -205,7 +208,7 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 | Expert: `Cannot open .../subscreens/MediPix3/MediPix3.bob` | Old `_ad_view_controls.bob` — `git pull` and re-run `05-install-phoebus.sh`; Expert must use `../../ADTimePix3/R1-0/...` |
 | Expert: `Failed to load embedded display` for `ADShutter.bob` etc. | ADCore bob not synced — run step 03 then `05-install-phoebus.sh` (`ADApp/op/bob/autoconvert`) |
 | Expert: empty ADSetup / Collect panels | Driver embeds not synced — run step 04 then `05-install-phoebus.sh` (needs `ADTimePix3_mpx3/tpx3App/op/bob`) |
-| PVA profiles blank / wrong Y | Needs `NDStatsProfiles` PVs under `$(ProfileStats)Cal:` ([ADCore #600](https://github.com/areaDetector/ADCore/pull/600)); enable `ComputeProfiles` |
+| PVA profiles blank / wrong Y | Needs `$(ADCORE)/iocBoot/stats_profiles.cmd` + `db/NDStatsProfiles.template` (re-run step 03); then `dbpf …Stats1:StatsProfInit_.PROC 1`. Screens use `$(ProfileStats)Cal:` ([ADCore #600](https://github.com/areaDetector/ADCore/pull/600)) |
 | `05-install-phoebus.sh` leaves empty `/epics/GUI` | Default is `PHOEBUS_SOURCE=sns`; use `github` off-site. Re-run step 05 on SNS/VPN |
 | GitHub Phoebus download 404 | Old script used `phoebus-product-*.zip` (does not exist); current deploy uses `phoebus-*-linux.tar.gz` |
 | IOC can’t connect | Start Serval; fix `SERVER_URL` in IOC startup files |
