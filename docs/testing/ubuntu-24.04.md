@@ -172,7 +172,11 @@ cd ~/Documents/src/github/ad-timepix3-deploy   # or your clone path
 # After iocInit once: dbpf "$(PREFIX)Stats1:StatsProfInit_.PROC" 1
 # (or wait for ADCore #600 upstream instead of the deploy bridge)
 # Expert (AD detail) → ADet/R3-15/ADTimePix3/R1-0/MediPix3/MediPix3.bob
+# Tools: PrvImg | Img (Pva7/Pva8 low-rate) | HDF (HDFImgT0/T1) | Dest (Preview+Image)
+# After driver pull: re-run 05 so Acquire/ syncs Mpx3HdfImgConfig.bob, Mpx3ImgMonitor.bob, …
 ```
+
+**MediPix3 Image / HDF (driver `medipix3-integration`):** Preview live view uses **Pva1–Pva6** (addrs **0/8/9** frame, **10/11/12** integrated). Full-rate Image[] demux is **Pva7/Pva8** (addrs **1/13**) — enable only at low rate for demux checks; Dest → **HDF Config** for archive. `init_detector_hdf5_img_mpx3.cmd` disables Pva7/Pva8 by design.
 
 Check versions with `caget -V` (not `caget --version`).
 
@@ -213,7 +217,9 @@ echo $DISPLAY    # must be set, e.g. :0 or via ssh -X
 | GitHub Phoebus download 404 | Old script used `phoebus-product-*.zip` (does not exist); current deploy uses `phoebus-*-linux.tar.gz` |
 | IOC can’t connect | Start Serval; fix `SERVER_URL` in IOC startup files |
 | `Can't open .../ADCore/iocBoot/commonPlugins.cmd` | ADCore only ships `EXAMPLE_*` files — copy once: `cp -n EXAMPLE_commonPlugins.cmd commonPlugins.cmd` and `cp -n EXAMPLE_commonPlugin_settings.req commonPlugin_settings.req` in `$ADCORE/iocBoot`, or re-run step 03 (deploy script does this automatically) |
-| `Pva1` / `Stats5` PV not found after IOC start | `commonPlugins.cmd` did not load — fix row above; `Stats5` comes from common plugins. `Pva1` is optional (commented in EXAMPLE); MPX3 uses driver-wired `Pva2`–`Pva6` in `st_mpx3.cmd` |
+| `Pva1` / `Stats5` PV not found after IOC start | `commonPlugins.cmd` did not load — fix row above; `Stats5` comes from common plugins. `Pva1` is optional (commented in EXAMPLE); MPX3 Preview uses driver-wired **Pva1–Pva6** in `st_mpx3.cmd`; Image demux **Pva7/Pva8** exist but stay off until enabled for low-rate checks |
+| Img Monitor: `Cannot draw image sized 0 x 0` | **Pva7/Pva8 EnableCallbacks** are Off (default / after HDF soak script) — turn On, then Acquire; turn Off again before high-rate |
+| Expert Tools missing **Img** / **HDF** | Driver embeds stale — `git pull` in `ADTimePix3_mpx3`, re-run `05-install-phoebus.sh`; committed `MediPix3.bob` needs status panel height ≥160 |
 | `unable to open file auto_settings.req` | File lives in driver `iocs/tpx3IOC/iocBoot/iocTimePix/` — `git pull` in `ADTimePix3_mpx3` or re-run step 04; needs `commonPlugin_settings.req` in ADCore `iocBoot` |
 
 ---
