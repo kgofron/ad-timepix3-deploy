@@ -10,7 +10,7 @@ Scripts and configuration to install EPICS areaDetector with **ADTimePix3_mpx3**
   asyn, autosave, busy, calc, seq, sscan, iocStats, …
   areaDetector/
     ADCore, ADSupport
-    ADTimePix3_mpx3            MediPix3 development driver (kgofron fork)
+    ADTimePix3_mpx3            ADTimePix3 R1-7-0 (kgofron; MPX3+TPX3 — PR #15)
 /epics/GUI/phoebus             Phoebus product install
 /epics/GUI/bob                 Site screens (main/detectors.bob, ADet/R3-15/…)
 ```
@@ -61,7 +61,7 @@ See [docs/architecture.md](docs/architecture.md) for screen layering and a possi
 | `scripts/02-install-synapps-modules.sh` | asyn, autosave, busy, calc, seq, sscan, iocStats |
 | `scripts/configure-areadetector.sh` | Write `RELEASE_LIBS.local`, `RELEASE_PRODS.local`, `CONFIG_SITE.local` |
 | `scripts/03-install-areadetector-core.sh` | ADSupport + ADCore |
-| `scripts/04-install-adtimepix3-mpx3.sh` | Driver fork + IOC build |
+| `scripts/04-install-adtimepix3-mpx3.sh` | Driver (R1-7-0 / kgofron) + IOC build |
 | `scripts/05-install-phoebus.sh` | Phoebus product + settings |
 | `scripts/deploy-all.sh` | Run all of the above in order |
 | `scripts/launch-ioc.sh` | Boot `iocTimePix` (`IOC_STARTUP`, default `st_mpx3.cmd`) |
@@ -93,6 +93,7 @@ Templates live in `config/areaDetector/*.template`. Re-apply after path changes:
 
 - [areaDetector installation guide](https://areadetector.github.io/areaDetector/install_guide.html)
 - [ADTimePix3](https://github.com/areaDetector/ADTimePix3) — requires asyn ≥ R4-45, ADCore R3-11+, C++17
+- [ADTimePix3#15](https://github.com/areaDetector/ADTimePix3/pull/15) — Medipix3 support (R1-7-0); deploy pins [kgofron/ADTimePix3](https://github.com/kgofron/ADTimePix3) `@R1-7-0` until merge
 - [ADViewers](https://github.com/areaDetector/ADViewers) — community viewers (ImageJ, Python, IDL; Phoebus `.bob` TBD)
 
 ## Authors and license

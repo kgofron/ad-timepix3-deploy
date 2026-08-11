@@ -176,7 +176,7 @@ cd ~/Documents/src/github/ad-timepix3-deploy   # or your clone path
 # After driver pull: re-run 05 so Acquire/ syncs Mpx3HdfImgConfig.bob, Mpx3ImgMonitor.bob, …
 ```
 
-**MediPix3 Image / HDF (driver `medipix3-integration`):** Preview live view uses **Pva1–Pva6** (addrs **0/8/9** frame, **10/11/12** integrated). Full-rate Image[] demux is **Pva7/Pva8** (addrs **1/13**) — enable only at low rate for demux checks; Dest → **HDF Config** for archive. `init_detector_hdf5_img_mpx3.cmd` disables Pva7/Pva8 by design.
+**MediPix3 Image / HDF (driver **R1-7-0** / [PR #15](https://github.com/areaDetector/ADTimePix3/pull/15)):** Preview live view uses **Pva1–Pva6** (addrs **0/8/9** frame, **10/11/12** integrated). Full-rate Image[] demux is **Pva7/Pva8** (addrs **1/13**) — enable only at low rate for demux checks; Dest → **HDF Config** for archive. `init_detector_hdf5_img_mpx3.cmd` disables Pva7/Pva8 by design.
 
 Check versions with `caget -V` (not `caget --version`).
 

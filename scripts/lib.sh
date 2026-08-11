@@ -72,7 +72,11 @@ checkout_tag() {
   local tag="$2"
   echo "==> Checking out ${tag} in ${dest}"
   git -C "${dest}" fetch --tags origin
-  git -C "${dest}" checkout "${tag}"
+  # Shallow clones may need the tag commit; deepen if checkout fails.
+  if ! git -C "${dest}" checkout "${tag}" 2>/dev/null; then
+    git -C "${dest}" fetch --depth 50 origin tag "${tag}" || git -C "${dest}" fetch --unshallow || true
+    git -C "${dest}" checkout "${tag}"
+  fi
 }
 
 build_module() {

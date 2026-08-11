@@ -10,7 +10,7 @@
 | iocStats | `/epics/support/iocStats` | Optional but useful |
 | ADSupport | `.../areaDetector/ADSupport` | Builds TIFF, HDF5, XML2, GraphicsMagick, … |
 | ADCore | `.../areaDetector/ADCore` | Plugins, `commonPlugins.cmd` |
-| ADTimePix3_mpx3 | `.../areaDetector/ADTimePix3_mpx3` | MediPix3 fork; bundles CPR 1.14.2, json |
+| ADTimePix3_mpx3 | `.../areaDetector/ADTimePix3_mpx3` | [kgofron/ADTimePix3](https://github.com/kgofron/ADTimePix3) **R1-7-0** (unified TPX3+MPX3); [PR #15](https://github.com/areaDetector/ADTimePix3/pull/15) to upstream |
 
 ### ADTimePix3 external deps
 
