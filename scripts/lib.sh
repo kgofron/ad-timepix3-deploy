@@ -49,9 +49,21 @@ clone_or_update() {
   local depth="${GIT_DEPTH:-1}"
   if [[ -d "${dest}/.git" ]]; then
     echo "==> Updating ${dest}"
+    # Single-branch clones (e.g. old -b medipix3-integration) keep a fetch
+    # refspec for a deleted remote branch and fail before checkout.
+    if ! git -C "${dest}" config --get-all remote.origin.fetch 2>/dev/null \
+      | grep -q 'refs/heads/\*:'; then
+      echo "==> Resetting origin fetch refspec to all branches (was single-branch)"
+      git -C "${dest}" config --unset-all remote.origin.fetch || true
+      git -C "${dest}" config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+    fi
+    if [[ -n "${url}" ]]; then
+      git -C "${dest}" remote set-url origin "${url}" 2>/dev/null || true
+    fi
     git -C "${dest}" fetch --tags origin
     if [[ -n "${branch}" ]]; then
-      git -C "${dest}" checkout "${branch}"
+      git -C "${dest}" checkout -B "${branch}" "origin/${branch}" 2>/dev/null \
+        || git -C "${dest}" checkout "${branch}"
       git -C "${dest}" pull --ff-only origin "${branch}" || true
     fi
   else
