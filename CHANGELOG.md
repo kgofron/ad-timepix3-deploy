@@ -6,6 +6,7 @@ Detailed history: `git log`.
 ## Unreleased
 
 - Pin driver to [kgofron/ADTimePix3](https://github.com/kgofron/ADTimePix3) **R1-7-0** (`master`; `medipix3-integration` retired). Tracks [areaDetector/ADTimePix3#15](https://github.com/areaDetector/ADTimePix3/pull/15). Step 04 checks out `ADTIMEPix3_TAG` when set.
+- `clone_or_update`: reset single-branch `origin` fetch refspec so retired branches (e.g. `medipix3-integration`) do not block updates to `master` / `R1-7-0`
 - Sync MediPix3 Expert with driver: taller `MediPix3.bob` for Tools **Img** / **HDF**; docs for Pva7/Pva8 + HDFImg; `site.env.example` notes alternate `ADTIMEPix3_HOME` (e.g. support2); re-run `05-install-phoebus.sh` to pick up `Mpx3HdfImgConfig` / `Mpx3ImgMonitor`
 - Sync `_ad_view_image_pva_profiles.bob` from SNS: `$(ProfileStats)Cal:*.AVAL` axes, AD top-left Y-down (aligns with [ADCore #600](https://github.com/areaDetector/ADCore/pull/600); IOC db/ioc not vendored here)
 - ADCore iocBoot: seed/install `NDStatsProfiles.template` + `EXAMPLE_stats_profiles.cmd` → `stats_profiles.cmd` (bridge until #600 merges; used by driver `st_mpx3.cmd` / `st_base.cmd`)
